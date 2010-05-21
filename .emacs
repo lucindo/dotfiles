@@ -47,6 +47,21 @@
     (set-frame-parameter f 'fullscreen
                          (if (frame-parameter f 'fullscreen) nil 'fullboth))))
 
+(defun c++-mode-untabify ()
+  (save-excursion
+    (goto-char (point-min))
+    (while (re-search-forward "[ \t]+$" nil t)
+      (delete-region (match-beginning 0) (match-end 0)))
+    (goto-char (point-min))
+    (if (search-forward "\t" nil t)
+        (untabify (1- (point)) (point-max))))
+  nil)
+
+(add-hook 'c++-mode-hook
+          '(lambda ()
+             (make-local-hook 'write-contents-hooks)
+             (add-hook 'write-contents-hooks 'c++-mode-untabify)))
+
 (global-set-key [home]        'beginning-of-buffer)
 (global-set-key [end]         'end-of-buffer)
 (global-set-key [(control z)] 'undo)
