@@ -75,22 +75,25 @@
 (global-set-key (quote [S-iso-lefttab]) (quote dabbrev-expand))
 (global-set-key (quote [S-tab]) (quote dabbrev-expand))
 
-(require 'autoinsert)
-(auto-insert-mode)
-(setq auto-insert-directory "~/.mytemplates/" ;; /$
-      auto-insert-query nil)
-(define-auto-insert "\.py" "my-python-template.py")
+(when (require 'autoinsert nil 'noerror)
+  (progn
+	(auto-insert-mode)
+	(setq auto-insert-directory "~/.mytemplates/" ;; /$
+		  auto-insert-query nil)
+	(define-auto-insert "\.py" "my-python-template.py")))
 
 ;; http://stud4.tuwien.ac.at/~e0225855/linum/linum.html
 ;; http://www.emacswiki.org/emacs/linum+.el
 (when (require 'linum+ nil 'noerror)
-  (linum-mode t)
-  (global-set-key [f9] 'linum-mode))
+  (progn
+	(linum-mode t)
+	(global-set-key [f9] 'linum-mode)))
 
 (when (require 'cua-base nil 'noerror)
-  (cua-mode t)
-  (global-set-key "\M-c" 'cua-copy-region)
-  (global-set-key "\M-v" 'cua-paste))
+  (progn
+	(cua-mode t)
+	(global-set-key "\M-c" 'cua-copy-region)
+	(global-set-key "\M-v" 'cua-paste)))
 
 ;; http://www.emacswiki.org/emacs/download/zenburn.el
 (when (require 'zenburn nil 'noerror)
