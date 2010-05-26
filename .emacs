@@ -73,6 +73,12 @@
 (global-set-key (quote [S-iso-lefttab]) (quote dabbrev-expand))
 (global-set-key (quote [S-tab]) (quote dabbrev-expand))
 
+(require 'autoinsert)
+(auto-insert-mode)
+(setq auto-insert-directory "~/.mytemplates/" ;; /$
+      auto-insert-query nil)
+(define-auto-insert "\.py" "my-python-template.py")
+
 ;; http://stud4.tuwien.ac.at/~e0225855/linum/linum.html
 ;; http://www.emacswiki.org/emacs/linum+.el
 (when (require 'linum+ nil 'noerror)
