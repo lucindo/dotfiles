@@ -49,6 +49,12 @@
     (set-frame-parameter f 'fullscreen
                          (if (frame-parameter f 'fullscreen) nil 'fullboth))))
 
+(defun irc ()
+  (interactive)
+  (if (get-buffer (car (remove-if-not (lambda (x) (string-match "freenode" x)) (mapcar (function buffer-name) (buffer-list)))))
+	  (erc-track-switch-buffer 1)
+	(erc :server "irc.freenode.net" :port 6667 :nick "lucindo" :full-name "Renato Lucindo")))
+
 (defun c++-mode-untabify ()
   (save-excursion
     (goto-char (point-min))
@@ -111,9 +117,9 @@
     (switch-to-buffer my-buffer)))
 
 (setq
- load-path (cons "/usr/local/lib/erlang/lib/tools-2.6.5.1/emacs" load-path)
- erlang-root-dir "/usr/local/lib/erlang"
- exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
+ load-path (cons "/opt/erlang/lib/erlang/lib/tools-2.6.5.1/emacs" load-path)
+ erlang-root-dir "/opt/erlang/lib/erlang"
+ exec-path (cons "/opt/erlang/lib/erlang/bin" exec-path))
 
 (when (require 'erlang-start nil 'noerror)
   (global-set-key [f7] 'make-erlang))
