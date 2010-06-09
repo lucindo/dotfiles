@@ -77,26 +77,43 @@
 
 (when (require 'autoinsert nil 'noerror)
   (progn
-	(auto-insert-mode)
-	(setq auto-insert-directory "~/.mytemplates/" ;; /$
-		  auto-insert-query nil)
-	(define-auto-insert "\.py" "my-python-template.py")))
+    (auto-insert-mode)
+    (setq auto-insert-directory "~/.mytemplates/" ;; /$
+          auto-insert-query nil)
+    (define-auto-insert "\.py" "my-python-template.py")))
 
 ;; http://stud4.tuwien.ac.at/~e0225855/linum/linum.html
 ;; http://www.emacswiki.org/emacs/linum+.el
 (when (require 'linum+ nil 'noerror)
   (progn
-	(linum-mode t)
-	(global-set-key [f9] 'linum-mode)))
+    (linum-mode t)
+    (global-set-key [f9] 'linum-mode)))
 
 (when (require 'cua-base nil 'noerror)
   (progn
-	(cua-mode t)
-	(global-set-key "\M-c" 'cua-copy-region)
-	(global-set-key "\M-v" 'cua-paste)))
+    (cua-mode t)
+    (global-set-key "\M-c" 'cua-copy-region)
+    (global-set-key "\M-v" 'cua-paste)))
 
 ;; http://www.emacswiki.org/emacs/download/zenburn.el
 (when (require 'zenburn nil 'noerror)
   (color-theme-zenburn))
 
-(require 'erlang-start nil 'noerror)
+;; erlang
+(defun make-erlang ()
+  (interactive)
+  (let* ((my-buffer (current-buffer))
+         (my-file (file-name-nondirectory buffer-file-name)))
+    (when (switch-to-buffer "*erlang*")
+      (goto-char (point-max))
+      (insert (concat "make:files([" my-file "], [netload])."))
+      (comint-send-input))
+    (switch-to-buffer my-buffer)))
+
+(setq
+ load-path (cons "/usr/local/lib/erlang/lib/tools-2.6.5.1/emacs" load-path)
+ erlang-root-dir "/usr/local/lib/erlang"
+ exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
+
+(when (require 'erlang-start nil 'noerror)
+  (global-set-key [f7] 'make-erlang))
