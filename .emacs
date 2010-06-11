@@ -105,6 +105,9 @@
 (when (require 'zenburn nil 'noerror)
   (color-theme-zenburn))
 
+;; http://github.com/al3x/emacs/raw/master/vendor/thrift-mode/thrift-mode.el
+(require 'thrift-mode nil 'noerror)
+
 ;; erlang
 (defun make-erlang ()
   (interactive)
