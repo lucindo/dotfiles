@@ -111,8 +111,8 @@
 ;; erlang
 (defun make-erlang ()
   (interactive)
-  (let* ((my-buffer (current-buffer))
-         (my-file (file-name-nondirectory buffer-file-name)))
+  (let ((my-buffer (current-buffer))
+		(my-file (file-name-nondirectory buffer-file-name)))
     (when (switch-to-buffer "*erlang*")
       (goto-char (point-max))
       (insert (concat "make:files([" my-file "], [netload])."))
