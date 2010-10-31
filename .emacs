@@ -55,6 +55,11 @@
 	  (erc-track-switch-buffer 1)
 	(erc :server "irc.freenode.net" :port 6667 :nick "lucindo" :full-name "Renato Lucindo")))
 
+(defun untabify-buffer ()
+  "Untabify current buffer"
+  (interactive)
+  (untabify (point-min) (point-max)))
+
 (defun c++-mode-untabify ()
   (save-excursion
     (goto-char (point-min))
