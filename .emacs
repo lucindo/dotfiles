@@ -102,8 +102,8 @@
     (global-set-key "\M-v" 'cua-paste)))
 
 ;; http://www.emacswiki.org/emacs/download/zenburn.el
-(when (require 'zenburn nil 'noerror)
-  (color-theme-zenburn))
+;(when (require 'zenburn nil 'noerror)
+;  (color-theme-zenburn))
 
 ;; http://code.google.com/p/autopair/
 (when (require 'autopair nil 'noerror)
