@@ -27,8 +27,9 @@
 (fset 'yes-or-no-p (symbol-function 'y-or-n-p))
 (set-scroll-bar-mode 'right)
 
-(when (not (featurep 'aquamacs))
-  (set-default-font "-Misc-Fixed-Medium-R-Normal--15-140-75-75-C-90-ISO8859-1"))
+(if (eq system-type 'linux)
+	(set-default-font "-Misc-Fixed-Medium-R-Normal--15-140-75-75-C-90-ISO8859-1")
+  (set-default-font "-apple-inconsolata-medium-r-normal--14-*-*-*-*-*-iso10646-1"))
 
 (tool-bar-mode nil)
 (column-number-mode t)
