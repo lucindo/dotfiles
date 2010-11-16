@@ -27,7 +27,7 @@
 (fset 'yes-or-no-p (symbol-function 'y-or-n-p))
 (set-scroll-bar-mode 'right)
 
-(if (eq system-type 'linux)
+(if (eq system-type 'gnu/linux)
 	(set-default-font "-Misc-Fixed-Medium-R-Normal--15-140-75-75-C-90-ISO8859-1")
   (set-default-font "-apple-inconsolata-medium-r-normal--14-*-*-*-*-*-iso10646-1"))
 
@@ -136,3 +136,7 @@
 
 (when (require 'erlang-start nil 'noerror)
   (global-set-key [f7] 'make-erlang))
+
+;; M-x byte-compile-file RET js2.el RET
+(autoload 'js2-mode "js2" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
