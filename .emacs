@@ -140,3 +140,14 @@
 ;; M-x byte-compile-file RET js2.el RET
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+;; SLIME
+;; cd ~
+;; cvs -d :pserver:anonymous:anonymous@common-lisp.net:/project/slime/cvsroot co slime
+(add-to-list 'load-path (expand-file-name "~/slime"))
+(when (require 'slime nil 'noerror)
+  (progn
+	(add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
+	(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
+	(setq inferior-lisp-program "/usr/local/bin/sbcl --noinform")
+	(slime-setup '(slime-repl))))
