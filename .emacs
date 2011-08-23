@@ -142,12 +142,24 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;; SLIME
+;; 
+;; OLD -- init
 ;; cd ~
 ;; cvs -d :pserver:anonymous:anonymous@common-lisp.net:/project/slime/cvsroot co slime
-(add-to-list 'load-path (expand-file-name "~/slime"))
-(when (require 'slime nil 'noerror)
-  (progn
-	(add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
-	(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
-	(setq inferior-lisp-program "/usr/local/bin/sbcl --noinform")
-	(slime-setup '(slime-repl))))
+;; (add-to-list 'load-path (expand-file-name "~/slime"))
+;; (when (require 'slime nil 'noerror)
+;;   (progn
+;; 	(add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
+;; 	(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
+;; 	(setq inferior-lisp-program "/usr/local/bin/sbcl --noinform")
+;; 	(slime-setup '(slime-repl))))
+;; OLD -- fini
+;; 
+;; NEW (quicklisp)
+;; curl -O http://beta.quicklisp.org/quicklisp.lisp
+;; sbcl --load quicklisp.lisp
+;; * (quicklisp-quickstart:install)
+;; * (ql:add-to-init-file)
+;; * (ql:quickload "quicklisp-slime-helper")
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+(setq inferior-lisp-program "sbcl")
