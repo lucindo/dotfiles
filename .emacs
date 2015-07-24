@@ -1,4 +1,10 @@
-;;;; functions
+;;;;
+;;;; Renato Lucindo's .emacs
+;;;;
+
+;;;;
+;;;; General Functions
+;;;;
 
 (defun indent-buffer ()
   (interactive)
@@ -14,10 +20,11 @@
   (interactive)
   (if (featurep 'aquamacs)
 	  (aquamacs-toggle-full-frame)
-	(set-frame-parameter f 'fullscreen
-						 (if (frame-parameter f 'fullscreen) nil 'fullboth))))
+	(set-frame-parameter f 'fullscreen (if (frame-parameter f 'fullscreen) nil 'fullboth))))
 
-;;;; customizations
+;;;;
+;;;; Emacs Customizations
+;;;;
 
 (setq
  inhibit-startup-message t
@@ -65,9 +72,10 @@
 (global-set-key (quote [S-iso-lefttab]) (quote dabbrev-expand))
 (global-set-key (quote [S-tab]) (quote dabbrev-expand))
 
-;;; font and window size
+;;;;
+;;;;  font and window size
+;;;;
 
-;;(set-default-font "-apple-inconsolata-medium-r-normal--14-*-*-*-*-*-iso10646-1")
 (set-default-font "DejaVu Sans Mono 14")
 
 (defun get-default-height ()
@@ -77,9 +85,10 @@
 (add-to-list 'default-frame-alist '(width . 180))
 (add-to-list 'default-frame-alist (cons 'height (get-default-height)))
 
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
+
+;;;;
+;;;; emacs auto-generated custom vars
+;;;;
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
