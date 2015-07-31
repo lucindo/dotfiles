@@ -73,6 +73,27 @@
 (global-set-key (quote [S-tab]) (quote dabbrev-expand))
 
 ;;;;
+;;;; Extra modes via MELPA
+;;;;
+
+(require 'package)
+
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/"))
+(package-initialize)
+
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(defvar lucindo/packages
+  '(ecb markdown-mode magit))
+
+(dolist (pkg lucindo/packages)
+  (when (not (package-installed-p pkg))
+    (package-install pkg)))
+
+
+;;;;
 ;;;;  font and window size
 ;;;;
 
@@ -99,7 +120,16 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(custom-enabled-themes (quote (tsdh-light)))
+ '(custom-enabled-themes nil)
+ '(ecb-layout-window-sizes
+   (quote
+	(("left8"
+	  (ecb-directories-buffer-name 0.22564102564102564 . 0.2857142857142857)
+	  (ecb-sources-buffer-name 0.22564102564102564 . 0.23214285714285715)
+	  (ecb-methods-buffer-name 0.22564102564102564 . 0.2857142857142857)
+	  (ecb-history-buffer-name 0.22564102564102564 . 0.17857142857142858)))))
+ '(ecb-options-version "2.40")
+ '(ecb-source-path (quote (("/" "/"))))
  '(fci-rule-color "#383838")
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
