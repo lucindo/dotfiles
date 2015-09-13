@@ -86,15 +86,48 @@
   (package-refresh-contents))
 
 (defvar lucindo/packages
-  '(ecb markdown-mode magit))
+  '(ecb markdown-mode magit go-mode flymake-go company-go go-eldoc exec-path-from-shell))
 
 (dolist (pkg lucindo/packages)
   (when (not (package-installed-p pkg))
     (package-install pkg)))
 
+(exec-path-from-shell-initialize)
+
+;; to update package list run (package-refresh-contents)
 
 ;;;;
-;;;;  font and window size
+;;;; Programming
+;;;;
+
+;; Golang
+
+(exec-path-from-shell-copy-env "GOPATH")
+
+(load "$GOPATH/src/code.google.com/p/go.tools/cmd/oracle/oracle.el")
+
+(defun setup-go-mode ()
+  (setq gofmt-command "goimports")
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (if (not (string-match "go" compile-command))
+      (set (make-local-variable 'compile-command)
+           "go build -v && go test -v && go vet"))
+  (local-set-key (kbd "M-.") 'godef-jump)
+  (local-set-key (kbd "M-,") 'pop-global-mark))
+
+(add-hook 'go-mode-hook 'setup-go-mode)
+
+(add-hook 'go-mode-hook 'go-oracle-mode)
+
+(add-hook 'go-mode-hook 'go-eldoc-setup)
+
+(add-hook 'go-mode-hook
+		  (lambda ()
+			(set (make-local-variable 'company-backends) '(company-go))
+			(company-mode)))
+
+;;;;
+;;;; font and window size
 ;;;;
 
 (set-default-font "DejaVu Sans Mono 14")
