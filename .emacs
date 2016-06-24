@@ -86,7 +86,7 @@
   (package-refresh-contents))
 
 (defvar lucindo/packages
-  '(ecb markdown-mode magit go-mode flymake-go company-go go-eldoc exec-path-from-shell))
+  '(neotree markdown-mode magit web-mode expand-region go-mode flymake-go company-go go-eldoc exec-path-from-shell))
 
 (dolist (pkg lucindo/packages)
   (when (not (package-installed-p pkg))
