@@ -9,7 +9,7 @@
 (defun indent-buffer ()
   (interactive)
   (save-excursion
-	(indent-region (point-min) (point-max) nil)))
+    (indent-region (point-min) (point-max) nil)))
 
 (defun untabify-buffer ()
   "Untabify current buffer"
@@ -19,8 +19,8 @@
 (defun fullscreen (&optional f)
   (interactive)
   (if (featurep 'aquamacs)
-	  (aquamacs-toggle-full-frame)
-	(set-frame-parameter f 'fullscreen (if (frame-parameter f 'fullscreen) nil 'fullboth))))
+      (aquamacs-toggle-full-frame)
+    (set-frame-parameter f 'fullscreen (if (frame-parameter f 'fullscreen) nil 'fullboth))))
 
 ;;;;
 ;;;; Emacs Customizations
@@ -86,25 +86,63 @@
   (package-refresh-contents))
 
 (defvar lucindo/packages
-  '(neotree markdown-mode magit web-mode expand-region go-mode flymake-go company-go go-eldoc exec-path-from-shell))
+  '(neotree
+    anzu
+    markdown-mode
+    magit
+    web-mode
+    expand-region
+    go-mode
+    flymake-go
+    company-go
+    go-eldoc
+    exec-path-from-shell
+    graphene))
 
 (dolist (pkg lucindo/packages)
   (when (not (package-installed-p pkg))
     (package-install pkg)))
 
-(exec-path-from-shell-initialize)
-
 ;; to update package list run (package-refresh-contents)
+
+;;;;
+;;;; Editing
+;;;;
+
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+(global-anzu-mode +1)
+
+(setq linum-format " %d ")
+(global-linum-mode t)
+
+(defun lucindo/neotree-hook (_unused)
+  (linum-mode -1))
+(add-hook 'neo-after-create-hook 'lucindo/neotree-hook)
+
+(set-fringe-mode '(1 . 0))
+
+(setq neo-smart-open t)
+
+;; https://github.com/rdallasgray/graphene
+(require 'graphene)
 
 ;;;;
 ;;;; Programming
 ;;;;
 
 ;; Golang
+;;
+;; source: http://dominik.honnef.co/posts/2014/12/an_incomplete_list_of_go_tools/
+;; make sure to configure correctly GOPATH env
+;; install:
+;;    go get golang.org/x/tools/cmd/goimports
+;;    go get golang.org/x/tools/cmd/oracle
 
+(exec-path-from-shell-initialize)
 (exec-path-from-shell-copy-env "GOPATH")
 
-(load "$GOPATH/src/code.google.com/p/go.tools/cmd/oracle/oracle.el")
+(load "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
 
 (defun setup-go-mode ()
   (setq gofmt-command "goimports")
@@ -122,73 +160,23 @@
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
 (add-hook 'go-mode-hook
-		  (lambda ()
-			(set (make-local-variable 'company-backends) '(company-go))
-			(company-mode)))
+          (lambda ()
+            (set (make-local-variable 'company-backends) '(company-go))
+            (company-mode)))
+
+;;;
+;;; Web (HTML, CSS, JS)
+;;;
+
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
 ;;;;
 ;;;; font and window size
 ;;;;
 
-(set-default-font "DejaVu Sans Mono 14")
-
 (defun get-default-height ()
   (/ (- (display-pixel-height) 120)
-	 (frame-char-height)))
+     (frame-char-height)))
 
 (add-to-list 'default-frame-alist '(width . 180))
 (add-to-list 'default-frame-alist (cons 'height (get-default-height)))
-
-
-;;;;
-;;;; emacs auto-generated custom vars
-;;;;
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(custom-enabled-themes nil)
- '(ecb-layout-window-sizes
-   (quote
-	(("left8"
-	  (ecb-directories-buffer-name 0.22564102564102564 . 0.2857142857142857)
-	  (ecb-sources-buffer-name 0.22564102564102564 . 0.23214285714285715)
-	  (ecb-methods-buffer-name 0.22564102564102564 . 0.2857142857142857)
-	  (ecb-history-buffer-name 0.22564102564102564 . 0.17857142857142858)))))
- '(ecb-options-version "2.40")
- '(ecb-source-path (quote (("/" "/"))))
- '(fci-rule-color "#383838")
- '(vc-annotate-background "#2B2B2B")
- '(vc-annotate-color-map
-   (quote
-	((20 . "#BC8383")
-	 (40 . "#CC9393")
-	 (60 . "#DFAF8F")
-	 (80 . "#D0BF8F")
-	 (100 . "#E0CF9F")
-	 (120 . "#F0DFAF")
-	 (140 . "#5F7F5F")
-	 (160 . "#7F9F7F")
-	 (180 . "#8FB28F")
-	 (200 . "#9FC59F")
-	 (220 . "#AFD8AF")
-	 (240 . "#BFEBBF")
-	 (260 . "#93E0E3")
-	 (280 . "#6CA0A3")
-	 (300 . "#7CB8BB")
-	 (320 . "#8CD0D3")
-	 (340 . "#94BFF3")
-	 (360 . "#DC8CC3"))))
- '(vc-annotate-very-old-color "#DC8CC3"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
