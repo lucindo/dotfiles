@@ -138,6 +138,7 @@
 ;; install:
 ;;    go get golang.org/x/tools/cmd/goimports
 ;;    go get golang.org/x/tools/cmd/oracle
+;;    go get github.com/nsf/gocode
 
 (exec-path-from-shell-initialize)
 (exec-path-from-shell-copy-env "GOPATH")
