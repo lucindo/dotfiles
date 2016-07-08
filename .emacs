@@ -117,11 +117,13 @@
 (global-linum-mode t)
 
 (defun lucindo/neotree-hook (_unused)
+  (setq truncate-lines t)
   (linum-mode -1))
 (add-hook 'neo-after-create-hook 'lucindo/neotree-hook)
 
 (set-fringe-mode '(1 . 0))
 
+(setq neo-theme (quote nerd))
 (setq neo-smart-open t)
 
 ;; https://github.com/rdallasgray/graphene
@@ -181,3 +183,8 @@
 
 (add-to-list 'default-frame-alist '(width . 180))
 (add-to-list 'default-frame-alist (cons 'height (get-default-height)))
+
+(provide '.emacs)
+;;; .emacs ends here
+(custom-set-variables
+ '(custom-enabled-themes (quote (leuven))))
