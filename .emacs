@@ -140,23 +140,28 @@
 ;; install:
 ;;    go get golang.org/x/tools/cmd/goimports
 ;;    go get golang.org/x/tools/cmd/oracle
+;;    go get golang.org/x/tools/cmd/cover
+;;    go get golang.org/x/tools/cmd/vet
+;;    go get golang.org/x/tools/cmd/gorename
+;;    go get golang.org/x/tools/cmd/godoc
 ;;    go get github.com/nsf/gocode
+
 
 (exec-path-from-shell-initialize)
 (exec-path-from-shell-copy-env "GOPATH")
 
 (load "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
 
-(defun setup-go-mode ()
-  (setq gofmt-command "goimports")
-  (add-hook 'before-save-hook 'gofmt-before-save)
-  (if (not (string-match "go" compile-command))
-      (set (make-local-variable 'compile-command)
-           "go build -v && go test -v && go vet"))
-  (local-set-key (kbd "M-.") 'godef-jump)
-  (local-set-key (kbd "M-,") 'pop-global-mark))
+;; (defun setup-go-mode ()
+;;   (setq gofmt-command "goimports")
+;;   (add-hook 'before-save-hook 'gofmt-before-save)
+;;   (if (not (string-match "go" compile-command))
+;;       (set (make-local-variable 'compile-command)
+;;            "go build -v && go test -v && go vet"))
+;;   (local-set-key (kbd "M-.") 'godef-jump)
+;;   (local-set-key (kbd "M-,") 'pop-global-mark))
 
-(add-hook 'go-mode-hook 'setup-go-mode)
+;; (add-hook 'go-mode-hook 'setup-go-mode)
 
 (add-hook 'go-mode-hook 'go-oracle-mode)
 
@@ -164,6 +169,8 @@
 
 (add-hook 'go-mode-hook
           (lambda ()
+            (setq gofmt-command "goimports")
+            (add-hook 'before-save-hook 'gofmt-before-save)
             (set (make-local-variable 'company-backends) '(company-go))
             (company-mode)))
 
