@@ -1,22 +1,25 @@
-;;;;
-;;;; Renato Lucindo's .emacs
-;;;;
+;;; .emacs --- Renato Lucindo's .emacs file
+;;; Commentary:
 
 ;;;;
 ;;;; General Functions
 ;;;;
 
+;;; Code:
+
 (defun indent-buffer ()
+  "Indent hole buffer."
   (interactive)
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
 
 (defun untabify-buffer ()
-  "Untabify current buffer"
+  "Untabify current buffer."
   (interactive)
   (untabify (point-min) (point-max)))
 
 (defun fullscreen (&optional f)
+  "Set Emacs to fullscreen mode.  Parameter F must be either 'fullscreen or 'fullbouth."
   (interactive)
   (if (featurep 'aquamacs)
       (aquamacs-toggle-full-frame)
@@ -86,17 +89,17 @@
   (package-refresh-contents))
 
 (defvar lucindo/packages
-  '(neotree
-    anzu
+  '(neotree               ;; NERDTree for emacs: https://github.com/jaypei/emacs-neotree
+    anzu                  ;; better search highlight: https://github.com/syohex/emacs-anzu
     markdown-mode
     magit
     web-mode
-    expand-region
+    expand-region         ;; context aware select regeion with "C-=": https://github.com/magnars/expand-region.el
     go-mode
     flymake-go
     company-go
     go-eldoc
-    exec-path-from-shell
+    exec-path-from-shell  ;; to set GOPATH inside Emacs
     graphene))
 
 (dolist (pkg lucindo/packages)
@@ -120,11 +123,10 @@
   (setq truncate-lines t)
   (linum-mode -1))
 (add-hook 'neo-after-create-hook 'lucindo/neotree-hook)
-
-(set-fringe-mode '(1 . 0))
-
 (setq neo-theme (quote nerd))
 (setq neo-smart-open t)
+
+(set-fringe-mode '(1 . 0))
 
 ;; https://github.com/rdallasgray/graphene
 (require 'graphene)
