@@ -141,7 +141,6 @@
 ;; make sure to configure correctly GOPATH env
 ;; install:
 ;;    go get -u -v golang.org/x/tools/cmd/goimports
-;;    go get -u -v golang.org/x/tools/cmd/oracle
 ;;    go get -u -v golang.org/x/tools/cmd/cover
 ;;    go get -u -v golang.org/x/tools/cmd/vet
 ;;    go get -u -v golang.org/x/tools/cmd/gorename
@@ -160,7 +159,7 @@
 (exec-path-from-shell-initialize)
 (exec-path-from-shell-copy-env "GOPATH")
 
-(load "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
+(load "$GOPATH/src/golang.org/x/tools/cmd/guru/go-guru.el")
 
 ;; (defun setup-go-mode ()
 ;;   (setq gofmt-command "goimports")
@@ -173,16 +172,16 @@
 
 ;; (add-hook 'go-mode-hook 'setup-go-mode)
 
-(add-hook 'go-mode-hook 'go-oracle-mode)
+(require 'go-guru)
 
 (add-hook 'go-mode-hook 'go-eldoc-setup)
-
 (add-hook 'go-mode-hook
           (lambda ()
             (setq gofmt-command "goimports")
             (add-hook 'before-save-hook 'gofmt-before-save)
             (set (make-local-variable 'company-backends) '(company-go))
-            (company-mode)))
+            (company-mode)
+            (go-guru-hl-identifier-mode)))
 
 ;;;
 ;;; Web (HTML, CSS, JS)
