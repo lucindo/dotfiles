@@ -60,7 +60,8 @@
 
 (when (display-graphic-p)
   (set-scroll-bar-mode 'right)
-  (tool-bar-mode 0))
+  (menu-bar-mode -1)
+  (tool-bar-mode -1))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -121,6 +122,7 @@
 
 (defun lucindo/neotree-hook (_unused)
   (setq truncate-lines t)
+  (hl-line-mode)
   (linum-mode -1))
 (add-hook 'neo-after-create-hook 'lucindo/neotree-hook)
 (setq neo-theme (quote nerd))
