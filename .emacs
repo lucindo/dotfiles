@@ -1,3 +1,6 @@
+;; FIXME: remove the line below when sr-speedbar fix free variable check for 'helm-alive-p'
+(setq byte-compile-warnings '(not free-vars ))
+
 ;;; .emacs --- Renato Lucindo's .emacs file
 ;;; Commentary:
 
@@ -207,4 +210,17 @@
 (provide '.emacs)
 ;;; .emacs ends here
 (custom-set-variables
- '(custom-enabled-themes (quote (leuven))))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (leuven)))
+ '(package-selected-packages
+   (quote
+    (graphene exec-path-from-shell go-eldoc company-go flymake-go go-mode expand-region web-mode magit markdown-mode anzu neotree))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
