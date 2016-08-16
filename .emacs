@@ -147,7 +147,6 @@
 ;; install:
 ;;    go get -u -v golang.org/x/tools/cmd/goimports
 ;;    go get -u -v golang.org/x/tools/cmd/cover
-;;    go get -u -v golang.org/x/tools/cmd/vet
 ;;    go get -u -v golang.org/x/tools/cmd/gorename
 ;;    go get -u -v golang.org/x/tools/cmd/godoc
 ;;    go get -u -v github.com/nsf/gocode
