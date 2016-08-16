@@ -130,6 +130,9 @@
 
 (set-fringe-mode '(1 . 0))
 
+(winner-mode t) ;; back to windows config with C-c <left arrow>
+(windmove-default-keybindings) ;; change between windows with Shift + arrow keys
+
 ;; https://github.com/rdallasgray/graphene
 (require 'graphene)
 
