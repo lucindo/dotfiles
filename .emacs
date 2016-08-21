@@ -98,8 +98,11 @@
     markdown-mode
     magit
     web-mode
+    whole-line-or-region
     expand-region         ;; context aware select regeion with "C-=": https://github.com/magnars/expand-region.el
+    dired+
     go-mode
+    flymake-cursor
     flymake-go
     company-go
     go-eldoc
@@ -133,8 +136,10 @@
 
 (set-fringe-mode '(1 . 0))
 
+(whole-line-or-region-mode 1)
+
 (winner-mode t) ;; back to windows config with C-c <left arrow>
-(windmove-default-keybindings) ;; change between windows with Shift + arrow keys
+;;(windmove-default-keybindings) ;; change between windows with Shift + arrow keys
 
 ;; https://github.com/rdallasgray/graphene
 (require 'graphene)
