@@ -166,6 +166,8 @@
 ;;    go get -u -v sourcegraph.com/sqs/goreturns
 ;;    go get -u -v github.com/tpng/gopkgs
 ;;    go get -u -v github.com/newhook/go-symbols
+;; command to install:
+;;  $ grep "go get" .emacs | grep -v grep | cut -f3 -d';' | while read line; do eval $line; done
 
 
 (exec-path-from-shell-initialize)
