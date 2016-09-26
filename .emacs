@@ -45,15 +45,14 @@
  search-highlight t
  compilation-scroll-output t
  apropos-do-all nil
- auto-save-interval 512
- auto-save-list-file-prefix "~/.backups/save-"
  indent-line-function 'indent-relative-maybe
- default-frame-alist (cons '(cursor-type . bar) (copy-alist default-frame-alist))
- c-default-style "ellemtel"
  tab-width 4
- c-basic-offset 4
  default-tab-width 4
  indent-tabs-mode nil)
+
+(if (display-graphic-p)
+	(setq-default cursor-type 'bar)
+  (setq-default cursor-type 'box))
 
 (fset 'yes-or-no-p (symbol-function 'y-or-n-p))
 (column-number-mode t)
@@ -61,10 +60,9 @@
 (show-paren-mode t)
 (ido-mode t)
 
-(when (display-graphic-p)
-  (set-scroll-bar-mode 'right)
-  (menu-bar-mode -1)
-  (tool-bar-mode -1))
+(set-scroll-bar-mode 'right)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -168,6 +166,7 @@
 ;;    go get -u -v github.com/newhook/go-symbols
 
 
+(setq exec-path-from-shell-arguments '("-l"))
 (exec-path-from-shell-initialize)
 (exec-path-from-shell-copy-env "GOPATH")
 
@@ -209,23 +208,25 @@
   (/ (- (display-pixel-height) 120)
      (frame-char-height)))
 
-(add-to-list 'default-frame-alist '(width . 180))
-(add-to-list 'default-frame-alist (cons 'height (get-default-height)))
+(when (display-graphic-p)
+  (add-to-list 'default-frame-alist '(width . 180))
+  (add-to-list 'default-frame-alist (cons 'height (get-default-height))))
 
 (provide '.emacs)
 ;;; .emacs ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (leuven)))
- '(package-selected-packages
-   (quote
-    (graphene exec-path-from-shell go-eldoc company-go flymake-go go-mode expand-region web-mode magit markdown-mode anzu neotree))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(when (display-graphic-p)
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(custom-enabled-themes (quote (leuven)))
+   '(package-selected-packages
+	 (quote
+	  (exec-path-from-shell go-eldoc company-go flymake-go go-mode expand-region web-mode magit markdown-mode anzu neotree))))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   ))
