@@ -60,9 +60,12 @@
 (show-paren-mode t)
 (ido-mode t)
 
-(set-scroll-bar-mode 'right)
+;;(set-scroll-bar-mode 'right)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(toggle-scroll-bar -1)
+
+
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -85,6 +88,17 @@
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/"))
+(defun require-package (package &optional min-version no-refresh)
+  "Install given PACKAGE, optionally requiring MIN-VERSION.
+If NO-REFRESH is non-nil, the available package lists will not be
+re-downloaded in order to locate PACKAGE."
+  (if (package-installed-p package min-version)
+      t
+    (if (or (assoc package package-archive-contents) no-refresh)
+        (package-install package)
+      (progn
+        (package-refresh-contents)
+        (require-package package min-version t)))))
 (package-initialize)
 
 (when (not package-archive-contents)
@@ -105,11 +119,10 @@
     company-go
     go-eldoc
     exec-path-from-shell  ;; to set GOPATH inside Emacs
-    graphene))
+    ))
 
 (dolist (pkg lucindo/packages)
-  (when (not (package-installed-p pkg))
-    (package-install pkg)))
+  (require-package pkg))
 
 ;; to update package list run (package-refresh-contents)
 
@@ -121,7 +134,7 @@
 
 (global-anzu-mode +1)
 
-(setq linum-format " %d ")
+(setq linum-format " %03d ")
 (global-linum-mode t)
 
 (defun lucindo/neotree-hook (_unused)
@@ -132,15 +145,13 @@
 (setq neo-theme (quote nerd))
 (setq neo-smart-open t)
 
-(set-fringe-mode '(1 . 0))
+(set-fringe-mode '(2 . 1))
+(set-face-attribute 'fringe nil :background "white")
 
 (whole-line-or-region-mode 1)
 
 (winner-mode t) ;; back to windows config with C-c <left arrow>
 ;;(windmove-default-keybindings) ;; change between windows with Shift + arrow keys
-
-;; https://github.com/rdallasgray/graphene
-(require 'graphene)
 
 ;;;;
 ;;;; Programming
@@ -216,19 +227,18 @@
 
 (provide '.emacs)
 ;;; .emacs ends here
-(when (display-graphic-p)
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(custom-enabled-themes (quote (leuven)))
-   '(package-selected-packages
-	 (quote
-	  (exec-path-from-shell go-eldoc company-go flymake-go go-mode expand-region web-mode magit markdown-mode anzu neotree))))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   ))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (leuven)))
+ '(package-selected-packages
+   (quote
+	(exec-path-from-shell go-eldoc company-go flymake-go go-mode expand-region web-mode magit markdown-mode anzu neotree))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
