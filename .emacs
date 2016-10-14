@@ -11,7 +11,7 @@
 ;;; Code:
 
 (defun indent-buffer ()
-  "Indent hole buffer."
+  "Indent whole buffer."
   (interactive)
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
