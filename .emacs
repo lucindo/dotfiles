@@ -60,12 +60,9 @@
 (show-paren-mode t)
 (ido-mode t)
 
-;;(set-scroll-bar-mode 'right)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
-
-
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -88,6 +85,8 @@
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/"))
+
+;; from purcell/emacs.d
 (defun require-package (package &optional min-version no-refresh)
   "Install given PACKAGE, optionally requiring MIN-VERSION.
 If NO-REFRESH is non-nil, the available package lists will not be
@@ -99,27 +98,30 @@ re-downloaded in order to locate PACKAGE."
       (progn
         (package-refresh-contents)
         (require-package package min-version t)))))
+
 (package-initialize)
 
 (when (not package-archive-contents)
   (package-refresh-contents))
 
 (defvar lucindo/packages
-  '(neotree               ;; NERDTree for emacs: https://github.com/jaypei/emacs-neotree
-    anzu                  ;; better search highlight: https://github.com/syohex/emacs-anzu
+  '(neotree
+	;; better search highlight: https://github.com/syohex/emacs-anzu
+    anzu
     markdown-mode
     magit
     web-mode
     whole-line-or-region
-    expand-region         ;; context aware select regeion with "C-=": https://github.com/magnars/expand-region.el
+	;; context aware select regeion with "C-=": https://github.com/magnars/expand-region.el
+    expand-region
     dired+
     go-mode
     flymake-cursor
     flymake-go
     company-go
     go-eldoc
-    exec-path-from-shell  ;; to set GOPATH inside Emacs
-    ))
+	;; to set GOPATH inside Emacs
+    exec-path-from-shell))
 
 (dolist (pkg lucindo/packages)
   (require-package pkg))
@@ -150,8 +152,7 @@ re-downloaded in order to locate PACKAGE."
 
 (whole-line-or-region-mode 1)
 
-(winner-mode t) ;; back to windows config with C-c <left arrow>
-;;(windmove-default-keybindings) ;; change between windows with Shift + arrow keys
+(winner-mode t) ;; C-c <arrows>
 
 ;;;;
 ;;;; Programming
@@ -178,23 +179,11 @@ re-downloaded in order to locate PACKAGE."
 ;; command to install:
 ;;  $ grep "go get" .emacs | grep -v grep | cut -f3 -d';' | while read line; do eval $line; done
 
-
 (setq exec-path-from-shell-arguments '("-l"))
 (exec-path-from-shell-initialize)
 (exec-path-from-shell-copy-env "GOPATH")
 
 (load "$GOPATH/src/golang.org/x/tools/cmd/guru/go-guru.el")
-
-;; (defun setup-go-mode ()
-;;   (setq gofmt-command "goimports")
-;;   (add-hook 'before-save-hook 'gofmt-before-save)
-;;   (if (not (string-match "go" compile-command))
-;;       (set (make-local-variable 'compile-command)
-;;            "go build -v && go test -v && go vet"))
-;;   (local-set-key (kbd "M-.") 'godef-jump)
-;;   (local-set-key (kbd "M-,") 'pop-global-mark))
-
-;; (add-hook 'go-mode-hook 'setup-go-mode)
 
 (require 'go-guru)
 
