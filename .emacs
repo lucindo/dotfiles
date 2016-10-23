@@ -116,6 +116,7 @@ re-downloaded in order to locate PACKAGE."
     expand-region
     dired+
     go-mode
+	go-errcheck
     flymake-cursor
     flymake-go
     company-go
@@ -168,6 +169,7 @@ re-downloaded in order to locate PACKAGE."
 ;;    go get -u -v golang.org/x/tools/cmd/gorename
 ;;    go get -u -v golang.org/x/tools/cmd/godoc
 ;;    go get -u -v github.com/nsf/gocode
+;;    go get -u -v github.com/kisielk/errcheck
 ;; extra tools:
 ;;    go get -u -v golang.org/x/tools/cmd/guru
 ;;    go get -u -v github.com/rogpeppe/godef
@@ -182,10 +184,6 @@ re-downloaded in order to locate PACKAGE."
 (setq exec-path-from-shell-arguments '("-l"))
 (exec-path-from-shell-initialize)
 (exec-path-from-shell-copy-env "GOPATH")
-
-(load "$GOPATH/src/golang.org/x/tools/cmd/guru/go-guru.el")
-
-(require 'go-guru)
 
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 (add-hook 'go-mode-hook
