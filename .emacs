@@ -121,6 +121,7 @@ re-downloaded in order to locate PACKAGE."
     flymake-go
     company-go
     go-eldoc
+    graphene
 	;; to set GOPATH inside Emacs
     exec-path-from-shell))
 
@@ -154,6 +155,8 @@ re-downloaded in order to locate PACKAGE."
 (whole-line-or-region-mode 1)
 
 (winner-mode t) ;; C-c <arrows>
+
+(require 'graphene)
 
 ;;;;
 ;;;; Programming
@@ -222,7 +225,7 @@ re-downloaded in order to locate PACKAGE."
  '(custom-enabled-themes (quote (leuven)))
  '(package-selected-packages
    (quote
-	(exec-path-from-shell go-eldoc company-go flymake-go go-mode expand-region web-mode magit markdown-mode anzu neotree))))
+    (exec-path-from-shell go-eldoc company-go flymake-go go-mode expand-region web-mode magit markdown-mode anzu neotree))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
