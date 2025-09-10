@@ -1,4 +1,8 @@
 source $HOME/.profile
 
 . "$HOME/.local/bin/env"
-eval "$(uv generate-shell-completion zsh)"
+
+# generate uv completions
+if (( $+commands[uv] )); then
+    eval "$(uv generate-shell-completion zsh)"
+fi
