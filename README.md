@@ -5,7 +5,7 @@ Personal dotfiles, using [GNU stow](https://www.gnu.org/software/stow/manual/sto
 On max OS X, first install [brew](https://brew.sh/):
 
 ```bash
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)""
 ```
 
 Then install stow:
