@@ -38,5 +38,5 @@ You can now edit the files in `~/Code/dotfiles` and they will be symlinked to `~
 To remove the symlinks, run:
 
 ```bash
-stow -D -t ~ -R .
+stow -t ~ -D .
 ```
