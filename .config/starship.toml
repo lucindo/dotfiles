@@ -1,0 +1,14 @@
+add_newline = false
+format = """
+$python$username\
+$directory\
+$git_branch\
+$character
+"""
+[directory]
+truncation_length = 100
+truncate_to_repo = false
+
+[python]
+python_binary = 'python3'
+format = '[py-(${version} )(\[$virtualenv\] )]($style)'
