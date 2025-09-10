@@ -30,7 +30,7 @@ And symlink the dotfiles:
 
 ```bash
 cd ~/Code/dotfiles
-stow -t ~ -R .
+stow -t $HOME -R .
 ```
 
 You can now edit the files in `~/Code/dotfiles` and they will be symlinked to `~/`.
@@ -38,5 +38,5 @@ You can now edit the files in `~/Code/dotfiles` and they will be symlinked to `~
 To remove the symlinks, run:
 
 ```bash
-stow -t ~ -D .
+stow -t $HOME -D .
 ```
