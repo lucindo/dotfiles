@@ -23,7 +23,7 @@ brew bundle
 Then clone this repo:
 
 ```bash
-git clone https://github.com/Lucindo/dotfiles.git ~/Code/dotfiles
+git clone https://github.com/lucindo/dotfiles.git ~/Code/dotfiles
 ```
 
 And symlink the dotfiles:
