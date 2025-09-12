@@ -185,6 +185,11 @@
 ;; make corfu works in terminal
 ;;(use-package corfu-terminal :ensure t :init (corfu-terminal-mode))
 
+;; in-buffer completions
+(use-package company
+  :ensure t
+  :init (global-company-mode))
+
 ;; Possible MELPA-only packages to install: (or maybe download locally)
 ;; - https://github.com/purcell/whole-line-or-region
 ;; - https://github.com/emacsorphanage/restclient
