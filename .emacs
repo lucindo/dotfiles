@@ -110,6 +110,8 @@
 ;;       adding orderless/consul/marginalia/embark if applicable
 ;;       Explore more about ido: https://www.youtube.com/watch?v=cYPTWI86Cqc
 ;;        -- icomplete mode (replacement for smex)
+;;        -- good video about completions (only):
+;;           -- https://www.youtube.com/watch?v=w9hHMDyF9V4
 
 ;; completion package
 (use-package vertico
