@@ -1,8 +1,7 @@
 set background=light
 syntax on
-set t_Co=256
-colorscheme PaperColor
-set colorcolumn=80
+set termguicolors
+colorscheme modus
 highlight clear SignColumn
 highlight clear LineNr
 
@@ -35,7 +34,7 @@ set cursorline
 " undo
 set noswapfile
 set nobackup
-set undodir="$HOME/.vim/undodir"
+set undodir="$HOME/.vim_undo"
 set undofile
 set history=1000
 
