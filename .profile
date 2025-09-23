@@ -33,7 +33,9 @@ alias fzf='fzf --color=light'
 alias ll='ls -l'
 alias la='ls -a'
 alias l='ls -CF'
-alias emacs='emacs -nw'
+alias emacs='emacsclient -nw -a "emacs -nw"'
+alias emacsd='command emacs --bg-daemon'
+alias emacsk='emacsclient -e "(kill-emacs)"'
 alias e=emacs
 
 # Set up fzf key bindings and fuzzy completion
