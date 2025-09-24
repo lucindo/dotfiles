@@ -12,4 +12,4 @@ brew "tmux"
 brew "tree"
 brew "wget"
 brew "d12frosted/emacs-plus/emacs-plus@31", args: ["without-cocoa"]
-cask "font-fira-code-nerd-font"
+cask "font-blex-mono-nerd-font"
