@@ -1,6 +1,5 @@
 set background=light
 syntax on
-set termguicolors
 colorscheme modus
 highlight clear SignColumn
 highlight clear LineNr
@@ -37,6 +36,9 @@ set nobackup
 set undodir="$HOME/.vim_undo"
 set undofile
 set history=1000
+
+" netrw
+let g:netrw_home = expand('~/.vim_netrw')
 
 " search
 set showmatch
