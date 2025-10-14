@@ -96,6 +96,9 @@
 ;;;;
 ;;;; External Packages
 ;;;;
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
 
 ;; select text semantically
 (use-package expand-region
@@ -165,7 +168,10 @@
 ;; the top.
 ;;
 ;; Further reading: https://protesilaos.com/emacs/dotemacs#h:25765797-27a5-431e-8aa4-cc890a6a913a
-(savehist-mode 1)
+;;(savehist-mode 1)
+(use-package savehist
+  :ensure t
+  :hook (after-init . savehist-mode))
 
 ;; The built-in `recentf-mode' keeps track of recently visited files.
 ;; You can then access those through the `consult-buffer' interface or
@@ -173,17 +179,22 @@
 ;;
 ;; I do not use this facility, because the files I care about are
 ;; either in projects or are bookmarked.
-(recentf-mode 1)
+;;(recentf-mode 1)
+(use-package recentf
+  :ensure t
+  :hook (after-init . recentf-mode)
+  :custom (recentf-max-saved-items 60))
 
 ;; in-buffer completions
-;;(use-package corfu
-;;  :ensure t
-;;  :hook
-;;  (prog-mode . (lambda () (setq-local corfu-auto t)))
-;;  :init (global-corfu-mode))
-
-;; make corfu works in terminal
-;;(use-package corfu-terminal :ensure t :init (corfu-terminal-mode))
+;; (use-package corfu
+;;   :config
+;;   (global-corfu-mode)
+;;   (corfu-popupinfo-mode)
+;;   :custom
+;;   (corfu-auto t)
+;;   (corfu-count 8)
+;;   (corfu-auto-prefix 2))
+;; (use-package corfu-terminal :hook (corfu-mode . corfu-terminal-mode))
 
 ;; in-buffer completions
 (use-package company
@@ -194,6 +205,22 @@
 ;; - https://github.com/purcell/whole-line-or-region
 ;; - https://github.com/emacsorphanage/restclient
 
+(use-package diminish
+  :ensure t)
+
+(use-package whole-line-or-region
+  :ensure t
+  :diminish whole-line-or-region-mode
+  :config
+  (whole-line-or-region-global-mode t)
+  (make-variable-buffer-local 'whole-line-or-region-global-mode))
+
+(use-package golden-ratio
+  :ensure t
+  :diminish golden-ratio-mode
+  :hook (after-init . golden-ratio-mode)
+  :config
+  (golden-ratio-toggle-widescreen))
 
 ;;;;
 ;;;; Key-bindings
