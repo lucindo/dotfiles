@@ -7,6 +7,7 @@ export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 export PROMPT='%n@%1~ %# '
 export PS1="$PROMPT"
 export LC_ALL=C.UTF-8
+export TERM=xterm-256color
 
 # No duplicate history when reverse-searching
 HISTSIZE=5000
