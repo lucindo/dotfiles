@@ -23,6 +23,15 @@
     (duplicate-line)
     (next-line)))
 
+;; only call it wit M-x
+(defun lucindo/toggle-whitespace-mode ()
+  "Toggle whitespace-mode"
+  (interactive)
+  (if (bound-and-true-p whitespace-mode)
+    (whitespace-mode -1)
+    (whitespace-mode)))
+
+
 ;;;;
 ;;;; General Options
 ;;;;
@@ -97,8 +106,19 @@
 ;;;; External Packages
 ;;;;
 (require 'package)
+(setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
+(unless package--initialized (package-initialize))
+
+;;; setup use-package
+(unless (package-installed-p 'use-package)
+  (progn
+    (package-refresh-contents)
+    (package-install 'use-package)))
+(eval-when-compile
+  (require 'use-package))
+(setq use-package-always-ensure t)
+
 
 ;; select text semantically
 (use-package expand-region
