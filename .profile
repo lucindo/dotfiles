@@ -46,4 +46,7 @@ source <(fzf --zsh)
 # Starship prompt
 eval "$(starship init zsh)"
 
+# Homebrew envs
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 . "$HOME/.local/bin/env"
