@@ -4,6 +4,20 @@ colorscheme modus
 highlight clear SignColumn
 highlight clear LineNr
 
+" If you want to be strict about number of columns
+" uncomment the next 2 lines:
+"highlight ColorColumn ctermbg=255 "251 is the same as statusline
+"execute "set colorcolumn=" . join(range(80,335), ',')
+
+" To show only a mark at column 80
+" uncomment the next 2 lines:
+highlight ColorColumn ctermbg=255 "251 is the same as statusline
+set colorcolumn=80
+
+
+" underline the current line (probably comment this off)
+set cursorline
+
 " numbers on the left
 set number
 set relativenumber
@@ -26,9 +40,6 @@ set hidden
 
 " show current mode
 set showmode
-
-" underline the current line (probably comment this off)
-set cursorline
 
 " undo
 set noswapfile
