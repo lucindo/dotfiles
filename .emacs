@@ -243,6 +243,33 @@
   (golden-ratio-toggle-widescreen))
 
 ;;;;
+;;;; Programming languages
+;;;;
+
+;; S-exp based languages: Elisp, Common Lisp, Clojure, etc
+;; (use-package paredit
+;;   :ensure t ; Install from MELPA if not present
+;;   :defer t  ; Load only when needed
+;;   :hook
+;;   ;; Activate paredit-mode in these major modes:
+;;   ((emacs-lisp-mode lisp-mode scheme-mode inferior-lisp-mode) . paredit-mode))
+
+;; Common Lisp
+;; need sblc installed in the system
+(use-package sly
+  :ensure t
+  :init
+  ;; Set SBCL as the default Lisp interpreter
+  (setq inferior-lisp-program "sbcl")
+  :config
+  (sly-setup)
+  ;; Automatically enable sly-mode for .lisp files
+  (add-hook 'lisp-mode-hook 'sly-mode)
+  :bind
+  ;; Bind a prefix key for all SLY-related commands
+  ("C-c s" . sly-prefix-map))
+
+;;;;
 ;;;; Key-bindings
 ;;;;
 
