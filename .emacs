@@ -246,6 +246,51 @@
 ;;;; Programming languages
 ;;;;
 
+;;;
+;;; General config
+;;;
+
+;; Show changes in the column
+(use-package diff-hl
+  :ensure t
+  :config
+  (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+  (add-hook 'diff-hl-mode-hook 'diff-hl-show-hunk-mouse-mode)
+  :custom
+  (diff-hl-update-async t)
+  :init
+  (global-diff-hl-mode 1)
+  :hook (diff-hl-mode . (lambda ()
+                          (unless (display-graphic-p)
+                            (diff-hl-margin-local-mode)))))
+
+;; Show errors
+(use-package flymake
+  :ensure t
+  :custom
+  (flymake-show-diagnostics-at-end-of-line nil)
+  ;; (flymake-show-diagnostics-at-end-of-line 'short)
+  (flymake-indicator-type 'margins)
+  (flymake-margin-indicators-string
+    `((error "!" compilation-error)
+       (warning "?" compilation-warning)
+       (note "i" compilation-info)))
+  :init
+  (define-minor-mode my/diagnostic-at-eol
+    "Minor mode to show flymake diagnostic at eol."
+    :init-value nil
+    :global nil
+    :lighter nil
+    (if my/diagnostic-at-eol
+      (setq flymake-show-diagnostics-at-end-of-line 'short)
+      (setq flymake-show-diagnostics-at-end-of-line nil))
+    (flymake-mode -1) ;; Disable Flymake
+    (flymake-mode 1)))
+
+;; Test if the config bellow is needed
+;; (set-fringe-style '(9 . 7))
+
 ;; S-exp based languages: Elisp, Common Lisp, Clojure, etc
 ;; (use-package paredit
 ;;   :ensure t ; Install from MELPA if not present

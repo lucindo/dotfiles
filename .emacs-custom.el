@@ -5,8 +5,9 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
   '(package-selected-packages
-     '(diminish embark-consult expand-region flymake-yaml golden-ratio magit
-	marginalia orderless paredit sly vertico whole-line-or-region yaml-mode)))
+     '(all-the-icons-nerd-fonts diff-hl diminish embark-consult expand-region
+	flycheck flymake-yaml flyover golden-ratio magit marginalia orderless
+	paredit sideline sly vertico whole-line-or-region yaml-mode)))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
