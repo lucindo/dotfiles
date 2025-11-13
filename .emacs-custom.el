@@ -7,7 +7,7 @@
   '(package-selected-packages
      '(all-the-icons-nerd-fonts diff-hl diminish embark-consult expand-region
 	flycheck flymake-yaml flyover golden-ratio magit marginalia orderless
-	paredit sideline sly vertico whole-line-or-region yaml-mode)))
+	paredit sideline sly vertico vterm whole-line-or-region yaml-mode)))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.

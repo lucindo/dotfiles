@@ -291,6 +291,10 @@
 ;; Test if the config bellow is needed
 ;; (set-fringe-style '(9 . 7))
 
+;; Terminal (needs libvterm installed)
+(use-package vterm
+  :ensure t)
+
 ;; S-exp based languages: Elisp, Common Lisp, Clojure, etc
 ;; (use-package paredit
 ;;   :ensure t ; Install from MELPA if not present
