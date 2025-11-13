@@ -1,6 +1,6 @@
 add_newline = false
 format = """
-$python$username\
+$python$golang$username\
 $directory\
 $git_branch\
 $character
@@ -10,5 +10,13 @@ truncation_length = 100
 truncate_to_repo = false
 
 [python]
-python_binary = 'python3'
+python_binary = ['python', 'python3', 'python2']
+pyenv_prefix = 'pyenv'
+style = 'yellow bold'
 format = '[py-(${version} )(\[$virtualenv\] )]($style)'
+
+[golang]
+style = 'yellow bold'
+detect_folders = ["!~/"]
+detect_files = ['go.mod', 'go.sum', 'go.work', 'glide.yaml', 'Gopkg.yml', 'Gopkg.lock']
+format = '[go-(${version} )($mod_version )]($style)'
