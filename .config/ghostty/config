@@ -2,6 +2,6 @@ font-family = BlexMono Nerd Font
 font-size = 15
 window-width = 120
 window-height = 48
-#theme = Atom One Light
 theme = One Half Light
+#theme = Modus
 macos-option-as-alt = true
