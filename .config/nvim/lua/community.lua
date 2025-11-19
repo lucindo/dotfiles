@@ -9,6 +9,11 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.go" },
-  -- theme
+  { import = "astrocommunity.pack.yaml" },
+  { import = "astrocommunity.pack.bash" },
+  -- theme & looks
   { import = "astrocommunity.colorscheme.rose-pine" },
+  { import = "astrocommunity.recipes.heirline-mode-text-statusline" },
+  -- navigation
+  { import = "astrocommunity.recipes.heirline-tabline-buffer-number" },
 }
