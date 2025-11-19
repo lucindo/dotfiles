@@ -97,6 +97,7 @@
 
 ;; load theme
 (load-theme 'modus-operandi t)
+(set-face-attribute 'default nil :background "#f9f9f9")
 
 ;; config bellow is no-op on some terminal emulators like OSX default
 ;; need to set the cursor style in the terminal
