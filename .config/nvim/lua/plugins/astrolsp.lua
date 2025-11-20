@@ -36,10 +36,7 @@ return {
       -- end
     },
     -- enable servers that you already have installed without mason
-    servers = {
-      "pyright",
-      "gopls",
-    },
+    servers = {},
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
