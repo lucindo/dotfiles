@@ -11,7 +11,7 @@ return {
   { import = "astrocommunity.pack.go" },
   { import = "astrocommunity.pack.yaml" },
   -- theme & looks
-  { import = "astrocommunity.colorscheme.rose-pine" },
+  { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.recipes.heirline-mode-text-statusline" },
   -- navigation
   { import = "astrocommunity.recipes.heirline-tabline-buffer-number" },
