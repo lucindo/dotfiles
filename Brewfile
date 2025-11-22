@@ -24,6 +24,7 @@ brew "tree"
 brew "tree-sitter-cli"
 brew "watch"
 brew "wget"
+brew "zsh-syntax-highlighting"
 brew "d12frosted/emacs-plus/emacs-plus@31", args: ["without-cocoa"]
 cask "font-blex-mono-nerd-font"
 cask "ghostty"
