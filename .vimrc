@@ -1,6 +1,6 @@
-set background=light
+set background=dark
 syntax on
-colorscheme modus
+colorscheme catppuccin_frappe
 highlight clear SignColumn
 highlight clear LineNr
 
