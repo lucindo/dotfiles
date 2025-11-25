@@ -61,4 +61,9 @@ export GOENV_ROOT="$HOME/.goenv"
 [[ -d $GOENV_ROOT/bin ]] && export PATH="$GOENV_ROOT/bin:$PATH"
 eval "$(goenv init -)"
 
+# Generate uv completions
+if (( $+commands[uv] )); then
+    eval "$(uv generate-shell-completion zsh)"
+fi
+
 . "$HOME/.local/bin/env"
