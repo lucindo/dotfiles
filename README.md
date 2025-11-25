@@ -8,22 +8,22 @@ On max OS X, first install [brew](https://brew.sh/):
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)""
 ```
 
-Then install stow:
+Then clone this repo:
 
 ```bash
-brew install stow
+git clone https://github.com/lucindo/dotfiles.git ~/Code/dotfiles
 ```
 
-Other command line tools and dependencies can be individually installed with `brew install`. List of all the tools used in this repo can be found in the [Brewfile](Brewfile). To install the bundle simply run:
+Command line tools and dependencies can be individually installed with `brew install`. List of all the tools used in this repo can be found in the [Brewfile](Brewfile). To install the bundle simply run:
 
 ```bash
 brew bundle
 ```
 
-Then clone this repo:
+If you skipped the bundle install, make sure you have `stow` installed:
 
 ```bash
-git clone https://github.com/lucindo/dotfiles.git ~/Code/dotfiles
+brew install stow
 ```
 
 And symlink the dotfiles:
