@@ -76,7 +76,6 @@ return {
             colored_indent_levels = false,
           },
           harpoon = true,
-          gitgraph = true,
           dropbar = {
             enabled = false,
             color_mode = true, -- enable color for kind's texts, not just kind's icons
