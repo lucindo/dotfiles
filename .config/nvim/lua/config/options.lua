@@ -40,9 +40,9 @@ vim.opt.lazyredraw = true -- Don't redraw during macros
 vim.opt.synmaxcol = 300 -- Syntax highlighting limit
 vim.opt.list = true -- Enable display of list chars
 vim.opt.listchars = { -- Configure what chars are shown for
-    tab = "› ", -- tabs
-    trail = "·", -- trailing whitespace
-    nbsp = "␣", -- non-breaking spaces
+  tab = "› ", -- tabs
+  trail = "·", -- trailing whitespace
+  nbsp = "␣", -- non-breaking spaces
 }
 vim.opt.winborder = "rounded" -- Window and floating border style
 
@@ -51,7 +51,7 @@ vim.opt.backup = false -- Don't create backup files
 vim.opt.writebackup = false -- Don't create backup before writing
 vim.opt.swapfile = false -- Don't create swap files
 vim.opt.undofile = true -- Persistent undo
-vim.opt.undodir = vim.fn.expand("~/.nvim/undodir") -- Undo directory
+vim.opt.undodir = vim.fn.expand "~/.nvim/undodir" -- Undo directory
 vim.opt.updatetime = 205 -- Faster completion
 vim.opt.timeoutlen = 500 -- Key timeout duration
 vim.opt.ttimeoutlen = 0 -- Key code timeout
@@ -63,11 +63,11 @@ vim.opt.hidden = true -- Allow hidden buffers
 vim.opt.errorbells = false -- No error bells
 vim.opt.backspace = "indent,eol,start" -- Better backspace behavior
 vim.opt.autochdir = true -- Auto change directory
-vim.opt.iskeyword:append("-") -- Treat dash as part of word
-vim.opt.path:append("**") -- include subdirectories in search
+vim.opt.iskeyword:append "-" -- Treat dash as part of word
+vim.opt.path:append "**" -- include subdirectories in search
 vim.opt.selection = "exclusive" -- Selection behavior
 vim.opt.mouse = "a" -- Enable mouse support
-vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
+vim.opt.clipboard:append "unnamedplus" -- Use system clipboard
 vim.opt.modifiable = true -- Allow buffer modifications
 vim.opt.encoding = "UTF-8" -- Set encoding
 vim.opt.confirm = true -- Ask for unsaved changes
@@ -85,10 +85,10 @@ vim.opt.splitright = true -- Vertical splits go right
 -- Command-line completion
 vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
-vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
+vim.opt.wildignore:append { "*.o", "*.obj", "*.pyc", "*.class", "*.jar" }
 
 -- Better diff options
-vim.opt.diffopt:append("linematch:60")
+vim.opt.diffopt:append "linematch:60"
 
 -- Personal global variables
 vim.g.replace_tabs = true -- Replace tabs to spaces on autoformatting

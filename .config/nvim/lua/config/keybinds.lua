@@ -12,15 +12,14 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Keeping my muscle memory
-vim.keymap.set({ "n", "i", "v" }, "<C-l>", function()
-    vim.cmd("normal! zz")
-end, { desc = "Center window on cursor point" })
-vim.keymap.set({ "n", "i", "v" }, "<C-a>", function()
-    vim.cmd("normal! 0")
-end, { desc = "Start of line" })
-vim.keymap.set({ "n", "i", "v" }, "<C-e>", function()
-    vim.cmd("normal! $")
-end, { desc = "End of line" })
+vim.keymap.set(
+  { "n", "i", "v" },
+  "<C-l>",
+  function() vim.cmd "normal! zz" end,
+  { desc = "Center window on cursor point" }
+)
+vim.keymap.set({ "n", "i", "v" }, "<C-a>", function() vim.cmd "normal! 0" end, { desc = "Start of line" })
+vim.keymap.set({ "n", "i", "v" }, "<C-e>", function() vim.cmd "normal! $" end, { desc = "End of line" })
 
 -- Buffer navigation
 vim.keymap.set("n", "<leader>bk", ":bnext<CR>", { desc = "Next buffer" })
@@ -71,6 +70,9 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- Config toggles
-vim.keymap.set({ "n", "v" }, "<leader>tf", function()
-    vim.g.disable_autoformat = not vim.g.disable_autoformat
-end, { desc = "Toggle Auto[f]ormat on save" })
+vim.keymap.set(
+  { "n", "v" },
+  "<leader>tf",
+  function() vim.g.disable_autoformat = not vim.g.disable_autoformat end,
+  { desc = "Toggle Auto[f]ormat on save" }
+)
