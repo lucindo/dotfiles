@@ -82,6 +82,7 @@ return {
             color_mode = true, -- enable color for kind's texts, not just kind's icons
           },
           diffview = true,
+          aerial = true,
         },
         -- Remove white underline on treesitter context
         ---@diagnostic disable-next-line
@@ -110,7 +111,6 @@ return {
       vim.keymap.set("n", "<Leader>;", dropbar_api.pick, { desc = "Pick symbols in winbar" })
     end,
   },
-
   {
     -- Shows header context
     "nvim-treesitter/nvim-treesitter-context",
