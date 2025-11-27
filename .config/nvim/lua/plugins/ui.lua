@@ -68,7 +68,22 @@ return {
             enabled = true,
             indentscope_color = "lavender",
           },
+          lsp_trouble = true,
+          mason = true,
+          indent_blankline = {
+            enabled = true,
+            scope_color = "lavender",
+            colored_indent_levels = false,
+          },
+          harpoon = true,
+          gitgraph = true,
+          dropbar = {
+            enabled = false,
+            color_mode = true, -- enable color for kind's texts, not just kind's icons
+          },
+          diffview = true,
         },
+        -- Remove white underline on treesitter context
         ---@diagnostic disable-next-line
         custom_highlights = function(colors)
           return {
@@ -80,10 +95,27 @@ return {
       vim.cmd.colorscheme "catppuccin"
     end,
   },
+
+  {
+    -- Breadcrumbs on winbar
+    "Bekaboo/dropbar.nvim",
+    enabled = vim.g.code_breadcrumbs,
+    -- optional, but required for fuzzy finder support
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+    },
+    config = function()
+      local dropbar_api = require "dropbar.api"
+      vim.keymap.set("n", "<Leader>;", dropbar_api.pick, { desc = "Pick symbols in winbar" })
+    end,
+  },
+
   {
     -- Shows header context
     "nvim-treesitter/nvim-treesitter-context",
     lazy = false,
+    enabled = vim.g.code_context,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
@@ -94,7 +126,7 @@ return {
         separator = nil,
         line_numbers = true,
         min_window_height = 40,
-        max_lines = 0,
+        max_lines = 3,
         multiwindow = false,
       }
     end,
