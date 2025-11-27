@@ -95,3 +95,5 @@ vim.g.replace_tabs = true -- Replace tabs to spaces on autoformatting
 vim.g.training_wheels = true -- Enable which-key
 vim.g.disable_autoformat = false -- Disable formatting file on saving
 vim.g.finder_on_open = true -- Open a fuzzy finder floater if nvim starts with no file
+vim.g.code_context = false -- Enable Treesitter context (UI)
+vim.g.code_breadcrumbs = false -- Show breadcrumbs on winbar
