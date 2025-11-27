@@ -21,18 +21,6 @@ vim.keymap.set(
 vim.keymap.set({ "n", "i", "v" }, "<C-a>", function() vim.cmd "normal! 0" end, { desc = "Start of line" })
 vim.keymap.set({ "n", "i", "v" }, "<C-e>", function() vim.cmd "normal! $" end, { desc = "End of line" })
 
--- Buffer navigation
-vim.keymap.set("n", "<leader>bk", ":bnext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bj", ":bprevious<CR>", { desc = "Previous buffer" })
-
--- Location navigation
-vim.keymap.set("n", "<leader>lk", ":lnext<CR>", { desc = "Next item of Location List" })
-vim.keymap.set("n", "<leader>lj", ":lprevious<CR>", { desc = "Previous item of Location List" })
-
--- Quickfix navigation
-vim.keymap.set("n", "<leader>ek", ":cnext<CR>", { desc = "Next error on Quickfix List" })
-vim.keymap.set("n", "<leader>ej", ":cprevious<CR>", { desc = "Previous error on Quickfix List" })
-
 -- Y to EOL
 vim.keymap.set("n", "Y", "y$", { desc = "Yank to end of line" })
 

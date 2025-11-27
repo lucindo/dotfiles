@@ -49,7 +49,7 @@ return {
       vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
       vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
-      vim.keymap.set("n", "<leader>bl", builtin.buffers, { desc = "[L]ist existing buffers" })
+      vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "List existing buffers" })
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set("n", "<leader>/", function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
@@ -285,6 +285,44 @@ return {
     },
   },
   {
+    -- Better dignostics
+    "folke/trouble.nvim",
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>xl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
+  },
+  {
     -- Better terminal support
     "akinsho/toggleterm.nvim",
     version = "*",
@@ -317,10 +355,7 @@ return {
       spec = {
         { "<leader>s", group = "[S]earch" },
         { "<leader>t", group = "[T]oggle" },
-        { "<leader>b", group = "[B]uffers" },
-        { "<leader>l", group = "[L]ocation" },
-        { "<leader>e", group = "[E]rrors (Quickfix list)" },
-        { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+        { "<leader>x", group = "Trouble (Quickfix)" },
         { "<leader>g", group = "[G]it " },
       },
     },
