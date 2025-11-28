@@ -102,7 +102,19 @@ return {
       }
       local capabilities = require("blink.cmp").get_lsp_capabilities()
       local servers = {
-        gopls = {},
+        gopls = {
+          settings = {
+            gopls = {
+              analyses = {
+                unusedparams = true,
+              },
+              staticcheck = true,
+              gofumpt = true,
+              completeUnimported = true, -- Enables auto-import
+              usePlaceholders = true,
+            },
+          },
+        },
         pyright = {},
         lua_ls = {
           settings = {
