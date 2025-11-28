@@ -11,16 +11,6 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
--- Keeping my muscle memory
-vim.keymap.set(
-  { "n", "i", "v" },
-  "<C-l>",
-  function() vim.cmd "normal! zz" end,
-  { desc = "Center window on cursor point" }
-)
-vim.keymap.set({ "n", "i", "v" }, "<C-a>", function() vim.cmd "normal! 0" end, { desc = "Start of line" })
-vim.keymap.set({ "n", "i", "v" }, "<C-e>", function() vim.cmd "normal! $" end, { desc = "End of line" })
-
 -- Y to EOL
 vim.keymap.set("n", "Y", "y$", { desc = "Yank to end of line" })
 
