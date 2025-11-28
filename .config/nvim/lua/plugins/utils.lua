@@ -230,7 +230,7 @@ return {
       vim.keymap.set("n", "<leader>ga", vim.cmd.Gwrite, { desc = "[G]it [a]dd" })
       vim.keymap.set("n", "<leader>gc", function() vim.cmd "Git commit" end, { desc = "[G]it [c]ommit" })
       vim.keymap.set("n", "<leader>gp", function() vim.cmd "Git push" end, { desc = "[G]it [p]ush" })
-      vim.keymap.set("n", "<leader>gP", function() vim.cmd "Git commit" end, { desc = "[G]it [P]ull" })
+      vim.keymap.set("n", "<leader>gP", function() vim.cmd "Git pull" end, { desc = "[G]it [P]ull" })
       vim.keymap.set("n", "<leader>gl", function() vim.cmd "Git log" end, { desc = "[G]it [l]log" })
     end,
   },
