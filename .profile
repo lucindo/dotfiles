@@ -2,8 +2,10 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 . "$HOME/.cargo/env"
 export CLICOLOR=1
-#export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
-export LSCOLORS=GxFxCxDxBxegedabagaced
+export LS_COLORS="$(vivid generate catppuccin-mocha)"
+# Old versions of LS_COLORS
+#export LSC_OLORS=ExGxBxDxCxEgEdxbxgxcxd
+#export LSC_OLORS=GxFxCxDxBxegedabagaced
 # Fallback prompt (no starhip)
 export PROMPT='%n@%1~ %# '
 export PS1="$PROMPT"

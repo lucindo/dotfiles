@@ -20,6 +20,7 @@ brew "tldr"
 brew "tmux"
 brew "tree"
 brew "tree-sitter-cli"
+brew "vivid"
 brew "watch"
 brew "wget"
 brew "d12frosted/emacs-plus/emacs-plus@31", args: ["without-cocoa"]
