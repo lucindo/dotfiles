@@ -8,7 +8,14 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export PROMPT='%n@%1~ %# '
 export PS1="$PROMPT"
 export LC_ALL=C.UTF-8
-#export TERM=xterm-256color
+
+# fzf theme: catppuccin-fzf-frappe
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#414559,bg:#303446,spinner:#F2D5CF,hl:#E78284 \
+--color=fg:#C6D0F5,header:#E78284,info:#CA9EE6,pointer:#F2D5CF \
+--color=marker:#BABBF1,fg+:#C6D0F5,prompt:#CA9EE6,hl+:#E78284 \
+--color=selected-bg:#51576D \
+--color=border:#737994,label:#C6D0F5"
 
 # No duplicate history when reverse-searching
 HISTSIZE=5000
@@ -42,6 +49,9 @@ alias emacsd='command emacs --bg-daemon'
 alias emacsk='emacsclient -e "(kill-emacs)"'
 alias e=emacs
 
+# Setup env
+. "$HOME/.local/bin/env"
+
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
@@ -62,8 +72,6 @@ export GOENV_ROOT="$HOME/.goenv"
 eval "$(goenv init -)"
 
 # Generate uv completions
-if (($ + commands[uv])); then
+if type uv &>/dev/null; then
     eval "$(uv generate-shell-completion zsh)"
 fi
-
-. "$HOME/.local/bin/env"
