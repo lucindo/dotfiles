@@ -93,21 +93,6 @@ return {
       --  - gcc  - Toggle comment for the current line
       --  - gc   - Toggle comment on visual selection
       require("mini.comment").setup()
-
-      -- Moving text with arrows (hjkl configured on keymaps.lua)
-      require("mini.move").setup {
-        mappings = {
-          left = "<S-left>",
-          right = "<S-right>",
-          down = "<S-down>",
-          up = "<S-up>",
-
-          line_left = "<S-left>",
-          line_right = "<S-right>",
-          line_down = "<S-down>",
-          line_up = "<S-up>",
-        },
-      }
     end,
   },
   {
