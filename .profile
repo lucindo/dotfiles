@@ -8,7 +8,7 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export PROMPT='%n@%1~ %# '
 export PS1="$PROMPT"
 export LC_ALL=C.UTF-8
-export TERM=xterm-256color
+#export TERM=xterm-256color
 
 # No duplicate history when reverse-searching
 HISTSIZE=5000
@@ -62,7 +62,7 @@ export GOENV_ROOT="$HOME/.goenv"
 eval "$(goenv init -)"
 
 # Generate uv completions
-if (( $+commands[uv] )); then
+if (($ + commands[uv])); then
     eval "$(uv generate-shell-completion zsh)"
 fi
 

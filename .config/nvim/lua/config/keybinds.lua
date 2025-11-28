@@ -62,5 +62,5 @@ vim.keymap.set(
   { "n", "v" },
   "<leader>tf",
   function() vim.g.disable_autoformat = not vim.g.disable_autoformat end,
-  { desc = "Toggle Auto[f]ormat on save" }
+  { desc = "[T]oggle Auto[f]ormat on save" }
 )
