@@ -11,6 +11,10 @@ export PROMPT='%n@%1~ %# '
 export PS1="$PROMPT"
 export LC_ALL=C.UTF-8
 
+if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+    export TERM=xterm-256color
+fi
+
 # fzf theme: catppuccin-fzf-frappe
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#414559,bg:#303446,spinner:#F2D5CF,hl:#E78284 \
