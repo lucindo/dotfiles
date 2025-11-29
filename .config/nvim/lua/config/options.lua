@@ -92,7 +92,7 @@ vim.opt.wildignore:append { "*.o", "*.obj", "*.pyc", "*.class", "*.jar" }
 vim.opt.diffopt:append "linematch:60"
 
 -- Personal global variables
-vim.g.replace_tabs = true -- Replace tabs to spaces on autoformatting
+vim.g.replace_tabs = false -- Replace tabs to spaces on autoformatting
 vim.g.training_wheels = true -- Enable which-key
 vim.g.disable_autoformat = false -- Disable formatting file on saving
 vim.g.finder_on_open = true -- Open a fuzzy finder floater if nvim starts with no file

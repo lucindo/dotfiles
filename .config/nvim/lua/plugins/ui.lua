@@ -35,7 +35,14 @@ return {
     "folke/todo-comments.nvim",
     event = "VimEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = { signs = false },
+    opts = {
+      signs = false,
+      highlight = {
+        before = "",
+        after = "",
+        keyword = "fg",
+      },
+    },
   },
   {
     -- Theme
@@ -70,6 +77,7 @@ return {
           },
           lsp_trouble = true,
           mason = true,
+          neotest = true,
           indent_blankline = {
             enabled = true,
             scope_color = "lavender",

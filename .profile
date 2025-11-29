@@ -1,5 +1,3 @@
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
 . "$HOME/.cargo/env"
 export CLICOLOR=1
 export LS_COLORS="$(vivid generate catppuccin-mocha)"
@@ -57,6 +55,7 @@ alias e=emacs
 
 # Setup env
 . "$HOME/.local/bin/env"
+eval "$(mise activate zsh)"
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
@@ -73,9 +72,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - zsh)"
 
 # Goenv
-export GOENV_ROOT="$HOME/.goenv"
-[[ -d $GOENV_ROOT/bin ]] && export PATH="$GOENV_ROOT/bin:$PATH"
-eval "$(goenv init -)"
+#export GOENV_ROOT="$HOME/.goenv"
+#[[ -d $GOENV_ROOT/bin ]] && export PATH="$GOENV_ROOT/bin:$PATH"
+#eval "$(goenv init -)"
 
 # Generate uv completions
 if type uv &>/dev/null; then

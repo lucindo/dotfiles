@@ -39,7 +39,7 @@ return {
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
-        go = { "gofmt" },
+        go = { "goimports", "gofmt" },
         python = { "isort", "black" },
         toml = { "taplo" },
         markdown = { "prettier" },
@@ -131,12 +131,17 @@ return {
     opts = {
       keymap = {
         preset = "default",
+        ["<CR>"] = { "accept", "fallback" },
+        ["<S-Tab>"] = { "show" },
+        ["<Down>"] = { "select_next", "fallback" },
+        ["<Up>"] = { "select_prev", "fallback" },
       },
       appearance = {
         nerd_font_variant = "mono",
       },
       completion = {
-        documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        menu = { auto_show = true },
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
       },
       sources = {
         default = { "lsp", "path", "snippets", "lazydev" },

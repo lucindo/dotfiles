@@ -307,8 +307,77 @@ return {
         { "<leader>s", group = "[S]earch" },
         { "<leader>t", group = "[T]oggle" },
         { "<leader>x", group = "Trouble (Quickfix)" },
-        { "<leader>g", group = "[G]it " },
+        { "<leader>g", group = "[G]it" },
+        { "<leader>d", group = "[D]ebug/Test" },
       },
     },
+  },
+  {
+    -- Unit testing
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      {
+        "nvim-treesitter/nvim-treesitter", -- Optional, but recommended
+        build = function() vim.cmd ":TSUpdate go" end,
+      },
+      {
+        "fredrikaverpil/neotest-golang",
+        version = "*", -- Optional, but recommended; track releases
+        build = function()
+          vim.system({ "go", "install", "gotest.tools/gotestsum@latest" }):wait() -- Optional, but recommended
+        end,
+      },
+    },
+    config = function()
+      local config = {
+        runner = "gotestsum", -- Optional, but recommended
+      }
+      require("neotest").setup {
+        adapters = {
+          require "neotest-golang" {
+            dap = { justMyCode = false },
+          },
+        },
+      }
+      vim.keymap.set(
+        "n",
+        "<leader>dr",
+        function() require("neotest").run.run { suite = false, testify = true } end,
+        { desc = "Test: Running Nearest Test" }
+      )
+      vim.keymap.set(
+        "n",
+        "<leader>dv",
+        function() require("neotest").summary.toggle() end,
+        { desc = "Test: Summary Toggle" }
+      )
+      vim.keymap.set(
+        "n",
+        "<leader>ds",
+        function() require("neotest").run.run { suite = true, testify = true } end,
+        { desc = "Test: Running Test Suite" }
+      )
+      vim.keymap.set(
+        "n",
+        "<leader>dd",
+        function() require("neotest").run.run { suite = false, testify = true, strategy = "dap" } end,
+        { desc = "Test: Debug Nearest Test" }
+      )
+      vim.keymap.set(
+        "n",
+        "<leader>do",
+        function() require("neotest").output.open() end,
+        { desc = "Test: Open test output" }
+      )
+      vim.keymap.set(
+        "n",
+        "<leader>da",
+        function() require("neotest").run.run(vim.fn.getcwd()) end,
+        { desc = "Test: Open test output" }
+      )
+    end,
   },
 }
