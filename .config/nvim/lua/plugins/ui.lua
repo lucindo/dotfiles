@@ -142,7 +142,7 @@ return {
     version = "*",
     config = function()
       local statusline = require "mini.statusline"
-      statusline.setup { use_icons = true }
+      statusline.setup { use_icons = false }
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function() return "%2l:%-2v" end
     end,
