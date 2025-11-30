@@ -131,7 +131,6 @@ return {
 						},
 					},
 				},
-				pyright = {},
 				lua_ls = {
 					settings = {
 						Lua = {
@@ -141,6 +140,8 @@ return {
 						},
 					},
 				},
+				pyright = {},
+				clangd = {},
 			}
 			local ensure_installed = vim.tbl_keys(servers or {})
 			-- Formatters to be installed
@@ -151,6 +152,7 @@ return {
 				"taplo",
 				"shfmt",
 				"prettier",
+				"clang-format",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 			require("mason-lspconfig").setup({

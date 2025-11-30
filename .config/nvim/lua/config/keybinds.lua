@@ -45,3 +45,12 @@ vim.keymap.set(
 vim.keymap.set({ "n", "v" }, "<leader>tf", function()
 	vim.g.disable_autoformat = not vim.g.disable_autoformat
 end, { desc = "[T]oggle Auto[f]ormat on save" })
+
+-- <C-l> to center the screen
+vim.keymap.set({"n", "v"}, "<C-l>", ":normal! zz<CR>", { desc = "Center screen"})
+
+-- Window resizing
+vim.keymap.set("n", "<leader><left>", ":vertical resize +20<cr>", { desc = "Resize to the left" })
+vim.keymap.set("n", "<leader><right>", ":vertical resize -20<cr>", { desc = "Resize to the right" })
+vim.keymap.set("n", "<leader><up>", ":resize +10<cr>", { desc = "Resize Up" })
+vim.keymap.set("n", "<leader><down>", ":resize -10<cr>", { desc = "Resize Down" })
