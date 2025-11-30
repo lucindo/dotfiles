@@ -40,8 +40,15 @@ return {
 			javascript = { "prettier", name = "dprint", timeout_ms = 1000, lsp_format = "fallback" },
 			json = { "prettier", name = "dprint", timeout_ms = 1000, lsp_format = "fallback" },
 			jsonc = { "prettier", name = "dprint", timeout_ms = 1000, lsp_format = "fallback" },
+			c = { "clang-format" },
+			cpp = { "clang-format" },
 			-- For filetypes without a formatter:
 			["_"] = { "trim_whitespace", "trim_newlines" },
+		},
+		formatters = {
+			["clang-format"] = {
+				prepend_args = { "-style=file", "-fallback-style=Microsoft" },
+			},
 		},
 		format_on_save = function(bufnr)
 			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
