@@ -55,7 +55,6 @@ alias e=emacs
 
 # Setup env
 . "$HOME/.local/bin/env"
-eval "$(mise activate zsh)"
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
@@ -66,15 +65,8 @@ eval "$(starship init zsh)"
 # Homebrew envs
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-
-# Goenv
-#export GOENV_ROOT="$HOME/.goenv"
-#[[ -d $GOENV_ROOT/bin ]] && export PATH="$GOENV_ROOT/bin:$PATH"
-#eval "$(goenv init -)"
+# Mise
+eval "$(mise activate zsh)"
 
 # Generate uv completions
 if type uv &>/dev/null; then
