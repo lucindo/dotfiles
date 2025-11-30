@@ -123,6 +123,8 @@ return {
 							},
 							completeUnimported = true,
 							usePlaceholders = true,
+							staticcheck = true,
+							gofumpt = true,
 							analyses = {
 								unusedparams = true,
 							},

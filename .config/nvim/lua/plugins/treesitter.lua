@@ -46,13 +46,12 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter-context",
 		lazy = false,
-		enabled = vim.g.code_context,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
 		config = function()
 			require("treesitter-context").setup({
-				enable = true,
+				enable = vim.g.code_context,
 				mode = "cursor",
 				separator = nil,
 				line_numbers = true,
@@ -60,6 +59,7 @@ return {
 				max_lines = 3,
 				multiwindow = false,
 			})
+			vim.keymap.set("n", "<leader>tc", ":TSContext toggle<CR>", { desc = "[T]oggle Treesitter [C]ontext" })
 		end,
 	},
 }

@@ -95,30 +95,4 @@ return {
 			require("telescope").load_extension("undo")
 		end,
 	},
-	{
-		-- [Programming] Search hierarchy of function calls (in and out)
-		"jmacadie/telescope-hierarchy.nvim",
-		dependencies = { { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } } },
-		keys = {
-			{ "<leader>si", "<cmd>Telescope hierarchy incoming_calls<cr>", desc = "LSP: [S]earch [I]ncoming Calls" },
-			{ "<leader>so", "<cmd>Telescope hierarchy outgoing_calls<cr>", desc = "LSP: [S]earch [O]utgoing Calls" },
-		},
-		opts = {
-			-- don't use `defaults = { }` here, do this in the main telescope spec
-			extensions = {
-				hierarchy = {
-					layout_strategy = "horizontal",
-					multi_depth = 5, -- How many layers deep should a multi-expand go?
-					initial_multi_expand = false, -- Run a multi-expand on open? If false, will only expand one layer deep by default
-				},
-			},
-		},
-		config = function(_, opts)
-			-- Calling telescope's setup from multiple specs does not hurt, it will happily merge the
-			-- configs for us. We won't use data, as everything is in it's own namespace (telescope
-			-- defaults, as well as each extension).
-			require("telescope").setup(opts)
-			require("telescope").load_extension("hierarchy")
-		end,
-	},
 }
