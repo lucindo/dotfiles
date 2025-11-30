@@ -37,8 +37,8 @@ return {
 			markdown = { "prettier" },
 			sh = { "shfmt" },
 			yaml = { "prettier" },
-			javascript = { "prettier", name = "dprint", timeout_ms = 500, lsp_format = "fallback" },
-			json = { "prettier", name = "dprint", timeout_ms = 500, lsp_format = "fallback" },
+			javascript = { "prettier", name = "dprint", timeout_ms = 1000, lsp_format = "fallback" },
+			json = { "prettier", name = "dprint", timeout_ms = 1000, lsp_format = "fallback" },
 			jsonc = { "prettier", name = "dprint", timeout_ms = 1000, lsp_format = "fallback" },
 			-- For filetypes without a formatter:
 			["_"] = { "trim_whitespace", "trim_newlines" },

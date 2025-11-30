@@ -1,10 +1,12 @@
 return {
 	{
 		"tpope/vim-fugitive",
+		dependencies = { "lewis6991/gitsigns.nvim" },
 		config = function()
 			local telescope = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "[G]it [s]tatus" })
-			vim.keymap.set("n", "<leader>gB", telescope.git_branches, { desc = "[G]it [B]ranches (Search)" })
+			vim.keymap.set("n", "<leader>gb", telescope.git_branches, { desc = "[G]it [B]ranches (Search)" })
+			vim.keymap.set("n", "<leader>gB", ":Gitsigns blame<CR>", { desc = "[G]it [B]lame" })
 			vim.keymap.set("n", "<leader>gH", telescope.git_commits, { desc = "[G]it commit [H]istory (Search)" })
 			vim.keymap.set("n", "<leader>gh", telescope.git_bcommits, { desc = "[G]it commit [h]istory (Buffer)" })
 			vim.keymap.set("n", "<leader>gf", telescope.git_files, { desc = "[G]it [f]ind (Search git files)" })
@@ -23,8 +25,5 @@ return {
 				vim.cmd("Git log")
 			end, { desc = "[G]it [l]log" })
 		end,
-	},
-	{
-		"lewis6991/gitsigns.nvim",
 	},
 }

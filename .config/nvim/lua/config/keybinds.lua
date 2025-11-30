@@ -30,6 +30,9 @@ vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
+-- Back to Netrw
+vim.keymap.set({ "n", "v" }, "<leader>te", vim.cmd.Ex, { desc = "[T]oggle file [e]xplorer" })
+
 -- Little one from Primeagen to mass replace string in a file
 vim.keymap.set(
 	"n",
@@ -38,6 +41,7 @@ vim.keymap.set(
 	{ silent = false, desc = "[R]eplace word on point" }
 )
 
+-- Toggle auto format on save
 vim.keymap.set({ "n", "v" }, "<leader>tf", function()
 	vim.g.disable_autoformat = not vim.g.disable_autoformat
 end, { desc = "[T]oggle Auto[f]ormat on save" })

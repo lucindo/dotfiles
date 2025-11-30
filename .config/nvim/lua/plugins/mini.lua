@@ -9,18 +9,6 @@ return {
 		-- auto pairs
 		require("mini.pairs").setup()
 
-		-- replace gitsigns
-		require("mini.diff").setup({
-			view = {
-				style = "sign",
-				signs = {
-					add = "┃",
-					change = "┃",
-					delete = "_",
-				},
-			},
-		})
-
 		-- Better Around/Inside textobjects
 		--
 		-- Examples:
@@ -53,9 +41,6 @@ return {
 		--  - gc   - Toggle comment on visual selection
 		require("mini.comment").setup()
 
-		-- better jump capabilities
-		require("mini.jump").setup()
-
 		-- Stauts line
 		local statusline = require("mini.statusline")
 		statusline.setup({ use_icons = false })
@@ -63,29 +48,5 @@ return {
 		statusline.section_location = function()
 			return "%2l:%-2v"
 		end
-
-		-- override vim.notify and show lsp info
-		-- require("mini.notify").setup({
-		-- 	content = {
-		-- 		format = function(notif)
-		-- 			return notif.msg
-		-- 		end,
-		-- 	},
-		-- 	window = {
-		-- 		config = function()
-		-- 			local has_statusline = vim.o.laststatus > 0
-		-- 			local pad = vim.o.cmdheight + (has_statusline and 1 or 0)
-		--
-		-- 			return {
-		-- 				border = "rounded",
-		-- 				col = vim.o.columns,
-		-- 				row = vim.o.lines - pad,
-		-- 				anchor = "SE",
-		-- 				title = "",
-		-- 			}
-		-- 		end,
-		-- 	},
-		-- })
-		-- MiniNotify.make_notify()
 	end,
 }

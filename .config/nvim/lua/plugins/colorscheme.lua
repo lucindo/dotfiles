@@ -30,19 +30,7 @@ return {
 				},
 				lsp_trouble = true,
 				mason = true,
-				neotest = true,
-				indent_blankline = {
-					enabled = true,
-					scope_color = "lavender",
-					colored_indent_levels = false,
-				},
-				harpoon = true,
-				dropbar = {
-					enabled = false,
-					color_mode = true,
-				},
-				diffview = true,
-				aerial = true,
+				neotree = true,
 			},
 			-- Remove white underline on treesitter context
 			---@diagnostic disable-next-line
