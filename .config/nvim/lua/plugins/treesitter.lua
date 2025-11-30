@@ -56,7 +56,10 @@ return {
 				separator = nil,
 				line_numbers = true,
 				min_window_height = 40,
-				max_lines = 3,
+				max_lines = 4,
+				trim_scope = "outer",
+				zindex = 20,
+				on_attach = nil,
 				multiwindow = false,
 			})
 			vim.keymap.set("n", "<leader>tc", ":TSContext toggle<CR>", { desc = "[T]oggle Treesitter [C]ontext" })
