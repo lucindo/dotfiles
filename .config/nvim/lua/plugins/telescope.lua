@@ -18,6 +18,15 @@ return {
 							preview_height = 0.7,
 						},
 					},
+					mappings = {
+						n = {
+							["<c-d>"] = require("telescope.actions").delete_buffer,
+						}, -- n
+						i = {
+							["<C-h>"] = "which_key",
+							["<c-d>"] = require("telescope.actions").delete_buffer,
+						}, -- i
+					}, -- mappings
 				},
 				extensions = {
 					fzf = {},
