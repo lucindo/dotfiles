@@ -91,6 +91,11 @@ vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
 -- Better diff options
 vim.opt.diffopt:append("linematch:60")
 
+-- Neovim providers
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
+
 -- Personal global variables
 vim.g.replace_tabs = false -- Replace tabs to spaces on autoformatting
 vim.g.training_wheels = true -- Enable which-key

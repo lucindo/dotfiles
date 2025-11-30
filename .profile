@@ -1,4 +1,3 @@
-. "$HOME/.cargo/env"
 export CLICOLOR=1
 export LS_COLORS="$(vivid generate catppuccin-mocha)"
 # Old versions of LS_COLORS

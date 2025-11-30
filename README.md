@@ -20,10 +20,15 @@ Command line tools and dependencies can be individually installed with `brew ins
 brew bundle
 ```
 
-If you skipped the bundle install, make sure you have `stow` installed:
+To have `nvim` properly working (and dev env), install the following via `mise`:
 
 ```bash
-brew install stow
+mise plugins add lua
+mise use -g lua@5.1
+mise use -g node
+mise use -g rust@nightly
+muse use -g go
+mise use -g python
 ```
 
 And symlink the dotfiles:
