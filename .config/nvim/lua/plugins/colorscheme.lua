@@ -30,7 +30,6 @@ return {
 				},
 				lsp_trouble = true,
 				mason = true,
-				neotree = true,
 			},
 			-- Remove white underline on treesitter context
 			---@diagnostic disable-next-line
