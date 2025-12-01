@@ -47,10 +47,16 @@ vim.keymap.set({ "n", "v" }, "<leader>tf", function()
 end, { desc = "[T]oggle Auto[f]ormat on save" })
 
 -- <C-l> to center the screen
-vim.keymap.set({"n", "v"}, "<C-l>", ":normal! zz<CR>", { desc = "Center screen"})
+vim.keymap.set({ "n", "v" }, "<C-l>", ":normal! zz<CR>", { desc = "Center screen" })
 
--- Window resizing
-vim.keymap.set("n", "<leader><left>", ":vertical resize +20<cr>", { desc = "Resize to the left" })
-vim.keymap.set("n", "<leader><right>", ":vertical resize -20<cr>", { desc = "Resize to the right" })
-vim.keymap.set("n", "<leader><up>", ":resize +10<cr>", { desc = "Resize Up" })
-vim.keymap.set("n", "<leader><down>", ":resize -10<cr>", { desc = "Resize Down" })
+-- Better window navigation
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+
+-- Splitting & Resizing
+vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
+vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
