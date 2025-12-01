@@ -51,7 +51,7 @@ return {
 		"MunifTanjim/nui.nvim",
 		--- The below dependencies are optional
 		"nvim-telescope/telescope.nvim",
-		"saghen/blink.nvim", -- TODO: configure blink for avante
+		"saghen/blink.nvim",
 		"nvim-mini/mini.nvim", -- make sure mini is loaded to provide icons
 		{
 			"MeanderingProgrammer/render-markdown.nvim",

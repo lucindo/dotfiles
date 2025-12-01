@@ -6,9 +6,6 @@ return {
 		require("mini.icons").setup()
 		MiniIcons.mock_nvim_web_devicons()
 
-		-- auto pairs
-		require("mini.pairs").setup()
-
 		-- Better Around/Inside textobjects
 		--
 		-- Examples:

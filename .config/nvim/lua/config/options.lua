@@ -29,7 +29,8 @@ vim.opt.incsearch = true -- Show matches as you type
 -- Visual settings
 vim.opt.termguicolors = true -- Enable 24-bit colors
 vim.opt.signcolumn = "yes" -- Always show sign column
-vim.opt.colorcolumn = "100" -- Show column if set to one or more numbers (comma separated)
+-- commented of as its being managed by smartcolumns plugin
+--vim.opt.colorcolumn = "100" -- Show column if set to one or more numbers (comma separated)
 vim.opt.showmatch = true -- Highlight matching brackets
 vim.opt.matchtime = 2 -- How long to show matching bracket
 vim.opt.cmdheight = 1 -- Command line height
