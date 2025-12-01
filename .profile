@@ -1,9 +1,5 @@
 export CLICOLOR=1
-export LS_COLORS="$(vivid generate catppuccin-mocha)"
-# Old versions of LS_COLORS
-#export LSC_OLORS=ExGxBxDxCxEgEdxbxgxcxd
-#export LSC_OLORS=GxFxCxDxBxegedabagaced
-# Fallback prompt (no starhip)
+export LS_COLORS="$(vivid generate catppuccin-frappe)"
 export PROMPT='%n@%1~ %# '
 export PS1="$PROMPT"
 export LC_ALL=C.UTF-8
@@ -41,8 +37,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 bindkey -e
 
 # Aliases
-alias htop='htop -C'
-alias fzf='fzf --color=light'
 alias ll='ls -l'
 alias la='ls -a'
 alias l='ls -CF'
@@ -50,7 +44,6 @@ alias vim='nvim'
 alias emacs='emacsclient -nw -a "emacs -nw"'
 alias emacsd='command emacs --bg-daemon'
 alias emacsk='emacsclient -e "(kill-emacs)"'
-alias e=emacs
 
 # Setup env
 . "$HOME/.local/bin/env"
