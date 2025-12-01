@@ -8,6 +8,7 @@ return {
 		"rafamadriz/friendly-snippets",
 		"nvim-mini/mini.nvim",
 		"onsails/lspkind.nvim", -- VS Code–style pictograms
+		"Kaiser-Yang/blink-cmp-avante",
 	},
 	opts = {
 		keymap = {
@@ -73,10 +74,11 @@ return {
 			documentation = { auto_show = true },
 		},
 		sources = {
-			default = { "lsp", "path", "snippets", "lazydev" },
+			default = { "avante", "lsp", "path", "snippets", "lazydev" },
 			providers = {
 				lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
 				lsp = { score_offset = 90 },
+				avante = { module = "blink-cmp-avante", name = "Avante" },
 			},
 		},
 		snippets = { preset = "luasnip" },

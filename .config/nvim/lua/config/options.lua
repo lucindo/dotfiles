@@ -102,6 +102,7 @@ vim.g.training_wheels = true -- Enable which-key
 vim.g.disable_autoformat = false -- Disable formatting file on saving
 vim.g.finder_on_open = true -- Open a fuzzy finder floater if nvim starts with no file
 vim.g.code_context = false -- Enable Treesitter context (UI)
+vim.g.enable_avante = false -- Enable Avante (required adicional setup)
 
 if false and vim.g.training_wheels then
 	vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')

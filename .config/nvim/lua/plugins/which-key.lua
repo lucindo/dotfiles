@@ -16,6 +16,7 @@ return {
 			{ "<leader>x", group = "Trouble (Quickfix)" },
 			{ "<leader>g", group = "[G]it" },
 			{ "<leader>T", group = "[T]esting" },
+			{ "<leader>a", group = "[A]vante (AI)" },
 		},
 	},
 }
