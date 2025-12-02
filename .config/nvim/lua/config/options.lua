@@ -84,8 +84,8 @@ vim.opt.splitright = true -- Vertical splits go right
 
 -- Command-line completion
 vim.opt.wildmenu = true
-vim.opt.wildmode = "longest:full,full"
-vim.opt.wildoptions = "pum"
+vim.opt.wildmode = "noselect:full,full"
+vim.opt.wildoptions = "pum,tagfile"
 vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
 
 -- Better diff options

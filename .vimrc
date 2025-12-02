@@ -1,21 +1,10 @@
 set background=dark
 syntax on
 colorscheme catppuccin_frappe
-highlight clear SignColumn
-highlight clear LineNr
+"highlight clear SignColumn
+"highlight clear LineNr
 
-" If you want to be strict about number of columns
-" uncomment the next 2 lines:
-"highlight ColorColumn ctermbg=255 "251 is the same as statusline
-"execute "set colorcolumn=" . join(range(80,335), ',')
-
-" To show only a mark at column 80
-" uncomment the next 2 lines:
-highlight ColorColumn ctermbg=255 "251 is the same as statusline
 set colorcolumn=80
-
-
-" underline the current line (probably comment this off)
 set cursorline
 
 " numbers on the left
@@ -64,6 +53,7 @@ set backspace=indent,eol,start
 " show extra and insible chars
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 set list
+
 
 " status line
 if has('statusline')
