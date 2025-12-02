@@ -3,6 +3,7 @@ return {
 	lazy = false,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope-ui-select.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	},
 	config = function()
@@ -26,7 +27,10 @@ return {
 					}, -- i
 				}, -- mappings
 			},
-			extensions = { fzf = {} },
+			extensions = {
+				fzf = {},
+				["ui-select"] = {},
+			},
 			pickers = {
 				live_grep = {
 					file_ignore_patterns = { "node_modules", ".git" },
@@ -42,6 +46,7 @@ return {
 		})
 		-- Enable Telescope extensions if they are installed
 		pcall(require("telescope").load_extension, "fzf")
+		pcall(require("telescope").load_extension, "ui-select")
 		local builtin = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 		vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
