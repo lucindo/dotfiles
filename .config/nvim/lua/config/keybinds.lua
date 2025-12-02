@@ -60,3 +60,15 @@ vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height
 vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+
+-- Exit terminal mode
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+-- open terminal
+vim.keymap.set("n", "<leader>tt", function()
+	vim.cmd.vnew()
+	vim.cmd.term()
+	vim.cmd.wincmd("J")
+	vim.api.nvim_win_set_height(0, 8)
+	vim.api.nvim_feedkeys("i", "n", false)
+end, { desc = "[T]oggle [t]erminal" })

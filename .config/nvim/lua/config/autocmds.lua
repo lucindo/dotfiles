@@ -31,3 +31,13 @@ vim.api.nvim_create_autocmd("WinLeave", {
 	pattern = "*",
 	command = "setlocal nocursorline",
 })
+
+-- Remove number column from termonal buffers
+vim.api.nvim_create_autocmd("TermOpen", {
+	group = vim.api.nvim_create_augroup("term_open", { clear = true }),
+	callback = function()
+		vim.opt.number = false
+		vim.opt.relativenumber = false
+		vim.opt.signcolumn = "no"
+	end,
+})
