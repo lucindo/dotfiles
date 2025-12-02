@@ -1,6 +1,15 @@
 return {
 	"tpope/vim-fugitive",
-	dependencies = { "lewis6991/gitsigns.nvim" },
+	dependencies = {
+		"lewis6991/gitsigns.nvim",
+		{
+			"sindrets/diffview.nvim",
+			cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
+			opts = {
+				enhanced_diff_hl = true,
+			},
+		},
+	},
 	config = function()
 		local telescope = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "[G]it [s]tatus" })
