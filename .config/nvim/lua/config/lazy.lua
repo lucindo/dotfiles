@@ -25,6 +25,7 @@ require("lazy").setup({
 	},
 	-- don't check for plugin updates
 	-- use `LazyUpdate` manually
+	colorscheme = { "catpppuccin-frappe", "default" },
 	checker = { enabled = false },
 	change_detection = { notify = false },
 	rtp = {

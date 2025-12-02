@@ -2,13 +2,10 @@ return {
 	"saghen/blink.cmp",
 	event = "VimEnter",
 	version = "1.*",
-	--build = "cargo build --release",
+	build = "cargo build --release",
 	dependencies = {
-		{ "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
-		"rafamadriz/friendly-snippets",
 		"nvim-mini/mini.nvim",
 		"onsails/lspkind.nvim", -- VS Code–style pictograms
-		"Kaiser-Yang/blink-cmp-avante",
 	},
 	opts = {
 		keymap = {
@@ -74,19 +71,16 @@ return {
 			documentation = { auto_show = true },
 		},
 		sources = {
-			default = { "avante", "lsp", "path", "snippets", "lazydev" },
+			default = { "lsp", "path", "lazydev" },
 			providers = {
 				lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
 				lsp = { score_offset = 90 },
-				avante = { module = "blink-cmp-avante", name = "Avante" },
 			},
 		},
-		snippets = { preset = "luasnip" },
-		fuzzy = { implementation = "lua" },
+		fuzzy = { implementation = "prefer_rust_with_warning" },
 		signature = { enabled = true },
 	},
 	config = function(_, opts)
-		require("luasnip.loaders.from_vscode").load()
 		require("blink.cmp").setup(opts)
 	end,
 }
