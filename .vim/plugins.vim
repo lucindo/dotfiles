@@ -20,9 +20,9 @@ endfunction
 " Your plugins
 call s:ensure('junegunn/fzf')
 call s:ensure('junegunn/fzf.vim')
-call s:ensure('tomasiser/vim-code-dark')
-call s:ensure('ghifarit53/tokyonight-vim')
 call s:ensure('yegappan/lsp')
 call s:ensure('ojroques/vim-oscyank')
 call s:ensure('tpope/vim-commentary')
+call s:ensure('tpope/vim-fugitive')
+call s:ensure('itchyny/vim-gitbranch')
 call s:ensure('itchyny/lightline.vim')
