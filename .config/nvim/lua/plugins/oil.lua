@@ -16,13 +16,13 @@ return {
 				use_default_keymaps = true,
 				delete_to_trash = false,
 				view_options = {
-					show_hidden = true,
+					show_hidden = false,
 					natural_order = true,
 					is_always_hidden = function(name, _)
 						return name == ".git"
 					end,
 				},
-				columns = { "icon", "permissions", "size", "mtime" },
+				--columns = { "icon", "permissions", "size", "mtime" },
 				keymaps = { ["<Esc>"] = "actions.close" },
 				float = {
 					padding = 0,
