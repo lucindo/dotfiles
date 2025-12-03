@@ -41,6 +41,7 @@ set scrolloff=8
 " Cursor responsiveness
 set updatetime=50
 
+set report=0
 set laststatus=2
 
 " undo
@@ -50,16 +51,10 @@ set undodir="$HOME/.vim_undo"
 set undofile
 set history=1000
 
-" netrw
-let g:netrw_home = expand('~/.vim_netrw')
-
 " show extra and insible chars
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 set list
-"set fillchars=eob:\
-
-"set wildmenu
-"set wildmode=list:longest,full
+set fillchars=eob:\ 
 
 " Plugins:
 "  need vim-plug installed, run:
@@ -85,6 +80,8 @@ call plug#end()
 
 colorscheme catppuccin_frappe
 
+set laststatus=2
+set noshowmode
 function! LightlineFilename()
   return expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
 endfunction
@@ -101,13 +98,9 @@ let g:lightline = {
       \ }
       \ }
 
-set laststatus=2
 
 " Set leader key
 let mapleader = " "
-
-" Open netrw with <leader>cd
-nnoremap <leader>cd :Ex<CR>
 
 " Move selected lines up/down (like Alt-Up/Down)
 vnoremap J :m '>+1<CR>gv=gv
@@ -154,21 +147,20 @@ vmap <leader>y <Plug>OSCYankVisual
 let g:undotree_WindowLayout = 3
 let g:undotree_SplitWidth = 40
 let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_DiffCommand = "diff -u"
 nnoremap <leader>u :UndotreeToggle<CR>
 
 " Files
 nnoremap <leader>sf :Files<CR>
-nnoremap <leader>so :History<CR>
+nnoremap <leader>sh :History<CR>
 nnoremap <leader><leader> :Buffers<CR>
 nnoremap <leader>sq :CList<CR>    " For quickfix list
-nnoremap <leader>sh :Helptags<CR>
+nnoremap <leader>sH :Helptags<CR>
 
 " Grep current string
 nnoremap <leader>ss :Rg <C-r><C-w><CR>
 
 " Grep input string (fzf prompt)
-nnoremap <leader>fg :Rg<Space>
+nnoremap <leader>sg :Rg<Space>
 
 " Grep for current file name (without extension)
 nnoremap <leader>/ :execute 'Rg ' . expand('%:t:r')<CR>
@@ -176,6 +168,8 @@ nnoremap <leader>/ :execute 'Rg ' . expand('%:t:r')<CR>
 " Enable diagnostics highlighting
 let lspOpts = #{autoHighlightDiags: v:true}
 autocmd User LspSetup call LspOptionsSet(lspOpts)
+" Requires Go LSP gopls in PATH
+" go install golang.org/x/tools/gopls@latest
 let lspServers = [
       \ #{
       \   name: 'golang',
@@ -200,8 +194,8 @@ inoremap <silent> <C-Space> <C-x><C-o>
 
 " Custom diagnostic sign characters
 autocmd User LspSetup call LspOptionsSet(#{
-    \   diagSignErrorText: '✘',
-    \   diagSignWarningText: '▲',
-    \   diagSignInfoText: '»',
-    \   diagSignHintText: '⚑',
+    \   diagSignErrorText: '󰅚 ',
+    \   diagSignWarningText: "󰀪 ",
+    \   diagSignInfoText: "󰋽 ",
+    \   diagSignHintText: "󰌶 ",
     \ })
