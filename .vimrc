@@ -69,6 +69,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'yegappan/lsp'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'ojroques/vim-oscyank'
 Plug 'mbbill/undotree'
 Plug 'itchyny/vim-gitbranch'
