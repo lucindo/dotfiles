@@ -1,5 +1,6 @@
 # Ignore plugin manager files
 plugged/
+autoload/
 
 # Ignore undo files (if set with `set undodir=~/.vim/undodir`)
 undodir/
