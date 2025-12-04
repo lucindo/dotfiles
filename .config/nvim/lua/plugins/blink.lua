@@ -80,7 +80,4 @@ return {
 		fuzzy = { implementation = "prefer_rust_with_warning" },
 		signature = { enabled = true },
 	},
-	config = function(_, opts)
-		require("blink.cmp").setup(opts)
-	end,
 }

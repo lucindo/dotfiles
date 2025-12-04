@@ -50,20 +50,20 @@ return {
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
-		config = function()
-			require("treesitter-context").setup({
-				enable = vim.g.code_context,
-				mode = "cursor",
-				separator = nil,
-				line_numbers = true,
-				min_window_height = 40,
-				max_lines = 4,
-				trim_scope = "outer",
-				zindex = 20,
-				on_attach = nil,
-				multiwindow = false,
-			})
-			vim.keymap.set("n", "<leader>tc", ":TSContext toggle<CR>", { desc = "[T]oggle Treesitter [C]ontext" })
-		end,
+		opts = {
+			enable = vim.g.code_context,
+			mode = "cursor",
+			separator = nil,
+			line_numbers = true,
+			min_window_height = 40,
+			max_lines = 4,
+			trim_scope = "outer",
+			zindex = 20,
+			on_attach = nil,
+			multiwindow = false,
+		},
+		keys = {
+			{ "<leader>tc", ":TSContext toggle<CR>", desc = "[T]oggle Treesitter [C]ontext" },
+		},
 	},
 }
