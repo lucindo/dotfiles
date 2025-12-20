@@ -8,6 +8,9 @@ if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
     export TERM=xterm-256color
 fi
 
+# Read man pages in neovim
+export MANPAGER='nvim +Man!'
+
 # fzf theme: catppuccin-fzf-frappe
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#414559,bg:#303446,spinner:#F2D5CF,hl:#E78284 \
