@@ -1,6 +1,7 @@
 return {
 	"tpope/vim-fugitive",
 	dependencies = {
+		"nvim-telescope/telescope.nvim",
 		"lewis6991/gitsigns.nvim",
 	},
 	config = function()
