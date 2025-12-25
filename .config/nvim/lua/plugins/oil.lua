@@ -36,7 +36,7 @@ return {
 				list = false,
 				wrap = false,
 			},
-			confirmation = { border = "rounded" },
+			confirmation = { border = "single" },
 		},
 		keys = {
 			{ "-", ":Oil<CR>", desc = "Open parent directory" },

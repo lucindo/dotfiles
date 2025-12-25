@@ -17,6 +17,7 @@ return {
 						preview_height = 0.7,
 					},
 				},
+				borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 				mappings = {
 					n = {
 						["<c-d>"] = require("telescope.actions").delete_buffer,
@@ -65,6 +66,11 @@ return {
 			builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
 				winblend = 10,
 				previewer = false,
+				borderchars = {
+					prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+					results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+					preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+				},
 			}))
 		end, { desc = "[/] Fuzzily search in current buffer" })
 		-- It's also possible to pass additional configuration options.

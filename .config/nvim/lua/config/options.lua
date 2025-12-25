@@ -44,7 +44,8 @@ vim.opt.listchars = { -- Configure what chars are shown for
 	trail = "·", -- trailing whitespace
 	nbsp = "␣", -- non-breaking spaces
 }
-vim.opt.winborder = "rounded" -- Window and floating border style
+--vim.opt.winborder = "rounded" -- Window and floating border style
+vim.opt.winborder = "single" -- Window and floating border style
 
 -- File handling
 vim.opt.backup = false -- Don't create backup files

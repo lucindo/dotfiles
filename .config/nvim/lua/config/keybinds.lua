@@ -46,9 +46,6 @@ vim.keymap.set({ "n", "v" }, "<leader>tf", function()
 	vim.g.disable_autoformat = not vim.g.disable_autoformat
 end, { desc = "[T]oggle Auto[f]ormat on save" })
 
--- <C-l> to center the screen
-vim.keymap.set({ "n", "v" }, "<C-l>", ":normal! zz<CR>", { desc = "Center screen" })
-
 -- Better window navigation
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
@@ -56,10 +53,10 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
 -- Splitting & Resizing (you may need to disable some OSX shortcuts)
-vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
-vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
-vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
-vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+vim.keymap.set("n", "<C-Up>", ":resize +1<CR>", { desc = "Increase window height" })
+vim.keymap.set("n", "<C-Down>", ":resize -1<CR>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-Left>", ":vertical resize -1<CR>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-Right>", ":vertical resize +1<CR>", { desc = "Increase window width" })
 
 -- Exit terminal mode
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
