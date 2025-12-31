@@ -3,5 +3,5 @@ font-size = 15
 window-width = 160
 window-height = 48
 theme = catppuccin-frappe
-#theme = Modus
 macos-option-as-alt = true
+term=xterm-256color
