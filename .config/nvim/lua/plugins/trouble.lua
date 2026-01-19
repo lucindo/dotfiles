@@ -13,7 +13,7 @@ return {
 		{ "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List" },
 		{ "<leader>xt", "<cmd>Trouble todo toggle<cr>", desc = "TODO List" },
 		{
-			"<leader>xl",
+			"<leader>xd",
 			"<cmd>Trouble lsp toggle focus=false win.position=left<cr>",
 			desc = "LSP Definitions / references / ...",
 		},
