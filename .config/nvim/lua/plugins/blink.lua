@@ -70,6 +70,12 @@ return {
 				},
 			},
 			documentation = { auto_show = true },
+			accept = {
+				auto_brackets = {
+					-- working nicely with autopairs-nvim
+					enabled = true,
+				},
+			},
 		},
 		sources = {
 			default = { "lsp", "path", "lazydev" },
