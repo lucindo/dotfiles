@@ -62,6 +62,7 @@ eval "$(starship init zsh)"
 
 # Homebrew envs
 eval "$(/opt/homebrew/bin/brew shellenv)"
+export HOMEBREW_NO_ENV_HINTS=1
 
 # Mise
 eval "$(mise activate zsh)"
