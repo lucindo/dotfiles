@@ -32,7 +32,7 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			go = { "goimports", "gofmt" },
-			python = { "isort", "black" },
+			python = { "isort", "yapf" },
 			toml = { "taplo" },
 			markdown = { "prettier" },
 			sh = { "shfmt" },

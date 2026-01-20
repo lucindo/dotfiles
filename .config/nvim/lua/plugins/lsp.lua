@@ -147,7 +147,7 @@ return {
 		vim.list_extend(ensure_installed, {
 			"stylua",
 			"isort",
-			"black",
+			"yapf",
 			"taplo",
 			"shfmt",
 			"prettier",
