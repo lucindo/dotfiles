@@ -36,7 +36,7 @@ return {
 			toml = { "taplo" },
 			markdown = { "prettier" },
 			sh = { "shfmt" },
-			yaml = { "prettier" },
+			--yaml = { "prettier" },
 			javascript = { "prettier", name = "dprint", timeout_ms = 1000, lsp_format = "fallback" },
 			json = { "prettier", name = "dprint", timeout_ms = 1000, lsp_format = "fallback" },
 			jsonc = { "prettier", name = "dprint", timeout_ms = 1000, lsp_format = "fallback" },
