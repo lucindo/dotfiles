@@ -34,6 +34,17 @@ return {
 				map("gO", require("telescope.builtin").lsp_document_symbols, "Open Document Symbols")
 				map("gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Open Workspace Symbols")
 				map("grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
+				map("<leader>td", function()
+					if vim.diagnostic.config().virtual_text then
+						vim.diagnostic.config({
+							virtual_text = false,
+						})
+					else
+						vim.diagnostic.config({
+							virtual_text = true,
+						})
+					end
+				end, "[T]oggle [D]iagnostics (Virtual text)")
 				local function client_supports_method(client, method, bufnr)
 					if vim.fn.has("nvim-0.11") == 1 then
 						return client:supports_method(method, bufnr)
@@ -94,7 +105,7 @@ return {
 			},
 			virtual_text = {
 				source = "if_many",
-				spacing = 3,
+				spacing = 4,
 				format = function(diagnostic)
 					local diagnostic_message = {
 						[vim.diagnostic.severity.ERROR] = diagnostic.message,
