@@ -14,10 +14,10 @@ return {
 			use_default_keymaps = true,
 			delete_to_trash = false,
 			view_options = {
-				show_hidden = false,
+				show_hidden = true,
 				natural_order = true,
 				is_always_hidden = function(name, _)
-					return name == ".git"
+					return name == ".git" or name == "." or name == ".."
 				end,
 			},
 			--columns = { "icon", "permissions", "size", "mtime" },
