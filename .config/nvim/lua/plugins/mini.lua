@@ -1,11 +1,7 @@
 return {
 	"nvim-mini/mini.nvim",
-	version = false,
+	version = "*",
 	config = function()
-		-- icons, replace nvim_web_devicons
-		require("mini.icons").setup()
-		MiniIcons.mock_nvim_web_devicons()
-
 		-- Better Around/Inside textobjects
 		--
 		-- Examples:
