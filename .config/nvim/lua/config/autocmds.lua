@@ -41,3 +41,14 @@ vim.api.nvim_create_autocmd("TermOpen", {
 		vim.opt.signcolumn = "no"
 	end,
 })
+
+-- Wrap lines on text files
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "markdown", "text", "plaintex" },
+	callback = function()
+		vim.opt_local.wrap = true
+		vim.opt_local.linebreak = true -- Wrap at words, not characters
+		vim.opt_local.formatoptions:append("t") -- Auto-wrap text using textwidth
+		--vim.opt_local.textwidth = 80 -- Optional: set width for hard wraps
+	end,
+})
