@@ -31,6 +31,7 @@ return {
 			lsp_trouble = true,
 			mason = true,
 			markview = true,
+			copilot_vim = true,
 		},
 		-- Remove white underline on treesitter context
 		---@diagnostic disable-next-line
