@@ -45,3 +45,10 @@ To remove the symlinks, run:
 ```bash
 stow -t $HOME -D .
 ```
+
+Note on `delta` config. Add the following to `$HOME/.gitconfig`
+
+```
+[include]
+    path = ~/.config/delta/delta.gitconfig
+```
