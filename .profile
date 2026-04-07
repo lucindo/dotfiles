@@ -47,9 +47,7 @@ alias ll='ls -l'
 alias la='ls -a'
 alias l='ls -CF'
 alias vim='nvim'
-alias emacs='emacsclient -nw -a "emacs -nw"'
-alias emacsd='command emacs --bg-daemon'
-alias emacsk='emacsclient -e "(kill-emacs)"'
+alias claude-personal='CLAUDE_CONFIG_DIR=~/.claude-personal claude'
 
 # Setup env
 . "$HOME/.local/bin/env"

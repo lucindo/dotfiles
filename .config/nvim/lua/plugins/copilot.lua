@@ -1,17 +1,4 @@
+return {}
 -- return {
--- 	"zbirenbaum/copilot.lua",
--- 	dependencies = {
--- 		"copilotlsp-nvim/copilot-lsp",
--- 	},
--- 	config = function()
--- 		require("copilot").setup({
--- 			nes = {
--- 				enabled = true,
--- 			},
--- 		})
--- 	end,
+-- 	"github/copilot.vim",
 -- }
-
-return {
-	"github/copilot.vim",
-}
