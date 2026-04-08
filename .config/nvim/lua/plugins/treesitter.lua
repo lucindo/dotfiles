@@ -9,6 +9,7 @@ return {
 		init = function()
 			vim.api.nvim_create_autocmd("FileType", {
 				callback = function()
+					-- Note: install language parses using :TSInstall
 					-- Enable treesitter highlighting and disable regex syntax
 					pcall(vim.treesitter.start)
 					-- Enable treesitter-based indentation
