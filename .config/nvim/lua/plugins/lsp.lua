@@ -157,12 +157,11 @@ return {
 		-- Formatters to be installed
 		vim.list_extend(ensure_installed, {
 			"stylua",
-			"isort",
-			"yapf",
 			"taplo",
 			"shfmt",
 			"prettier",
 			"clang-format",
+			"ruff",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 		require("mason-lspconfig").setup({
