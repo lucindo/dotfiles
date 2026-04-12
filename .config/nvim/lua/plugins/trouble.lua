@@ -3,7 +3,10 @@ return {
 	dependencies = {
 		"folke/todo-comments.nvim",
 	},
-	opts = {}, -- for default options, refer to the configuration section for custom setup.
+	opts = {
+		warn_no_results = false,
+		open_no_results = true,
+	},
 	cmd = "Trouble",
 	keys = {
 		{ "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics" },
