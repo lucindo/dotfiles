@@ -31,6 +31,16 @@ muse use -g go
 mise use -g python
 ```
 
+Also using a few things outside `brew` for python support (Astro tools):
+
+```bash
+# install uv, and reload .profile after so paths work properly
+curl -LsSf https://astral.sh/uv/install.sh | sh
+# once uv is intalled:
+uv tool install ruff@latest
+uv tool install ty@latest
+```
+
 And symlink the dotfiles:
 
 ```bash
