@@ -68,8 +68,6 @@ brew "libxml2"
 brew "libzip"
 # LLM inference in C/C++
 brew "llama.cpp"
-# Find what models run on your hardware
-brew "llmfit"
 # Next-gen compiler infrastructure
 brew "llvm"
 # Package manager for the Lua programming language
@@ -88,6 +86,8 @@ brew "ripgrep"
 brew "opencode"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
+# Show ps output as a tree
+brew "pstree"
 # Steel Bank Common Lisp system
 brew "sbcl"
 # SQL linter and auto-formatter for Humans
