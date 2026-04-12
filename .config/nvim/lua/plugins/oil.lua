@@ -36,6 +36,9 @@ return {
 				list = false,
 				wrap = false,
 			},
+			lsp_file_methods = {
+				autosave_changes = true,
+			},
 			confirmation = { border = "single" },
 		},
 		keys = {
