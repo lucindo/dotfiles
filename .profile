@@ -43,9 +43,15 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 bindkey -e
 
 # Aliases
-alias ll='ls -l'
-alias la='ls -a'
-alias l='ls -CF'
+#alias ll='ls -l'
+#alias la='ls -a'
+#alias l='ls -CF'
+alias ls='eza --icons=always'
+alias ll='eza -lh --icons --grid --group-directories-first'
+alias la='eza -a --icons'
+alias lt='eza --tree --level=2 --icons'
+alias lg='eza -l --git --icons'
+alias llm='eza -l --sort=modified --icons'
 alias vim='nvim'
 alias claude-personal='CLAUDE_CONFIG_DIR=~/.claude-personal claude'
 

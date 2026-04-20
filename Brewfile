@@ -24,6 +24,8 @@ brew "gettext"
 brew "cmake"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
+# Modern, maintained replacement for ls
+brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Play, record, convert, and stream select audio and video codecs
