@@ -24,8 +24,6 @@ brew "gettext"
 brew "cmake"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
-# Modern, maintained replacement for ls
-brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Play, record, convert, and stream select audio and video codecs
@@ -90,6 +88,8 @@ brew "opencode"
 brew "pkgconf"
 # Show ps output as a tree
 brew "pstree"
+# CLI proxy to minimize LLM token consumption
+brew "rtk"
 # Steel Bank Common Lisp system
 brew "sbcl"
 # SQL linter and auto-formatter for Humans
