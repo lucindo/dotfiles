@@ -45,6 +45,17 @@ return {
 						})
 					end
 				end, "[T]oggle [D]iagnostics (Virtual text)")
+				map("<leader>tl", function()
+					if vim.diagnostic.config().virtual_lines then
+						vim.diagnostic.config({
+							virtual_lines = false,
+						})
+					else
+						vim.diagnostic.config({
+							virtual_lines = true,
+						})
+					end
+				end, "[T]oggle [L]ine Diagnostics (Virtual line)")
 				local function client_supports_method(client, method, bufnr)
 					if vim.fn.has("nvim-0.11") == 1 then
 						return client:supports_method(method, bufnr)

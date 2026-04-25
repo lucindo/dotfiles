@@ -5,9 +5,9 @@ return {
 	priority = 1000, -- Make sure to load this before all the other start plugins.
 	opts = {
 		flavour = "frappe",
-		no_italic = true, -- Force no italic
-		no_bold = true, -- Force no bold
-		no_underline = true, -- Force no underline
+		no_italic = true, -- force no italic
+		no_bold = true, -- force no bold
+		no_underline = true, -- force no underline
 		styles = {
 			comments = {},
 			conditionals = {},
@@ -31,9 +31,12 @@ return {
 			lsp_trouble = true,
 			mason = true,
 			markview = true,
-			copilot_vim = true,
+			telescope = {
+				enabled = true,
+			},
+			flash = true,
 		},
-		-- Remove white underline on treesitter context
+		-- remove white underline on treesitter context
 		---@diagnostic disable-next-line
 		custom_highlights = function(colors)
 			return {
