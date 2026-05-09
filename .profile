@@ -68,4 +68,5 @@ eval "$(mise activate zsh)"
 # Generate uv completions
 if type uv &>/dev/null; then
     eval "$(uv generate-shell-completion zsh)"
+    export PYTHONDONTWRITEBYTECODE=1
 fi
