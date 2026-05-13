@@ -112,6 +112,8 @@ brew "vivid"
 brew "watch"
 # Internet file retriever
 brew "wget"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
 # General-purpose lossless data-compression library
 brew "zlib"
 # Comprehensive macOS cleanup and application uninstall tool
