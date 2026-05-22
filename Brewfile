@@ -121,5 +121,8 @@ brew "tw93/tap/mole"
 cask "font-blex-mono-nerd-font"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
-# Multiplayer code editor
-cask "zed"
+go "cmd/go"
+go "cmd/gofmt"
+uv "pynvim"
+uv "ruff"
+uv "ty"

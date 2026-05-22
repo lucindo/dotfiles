@@ -39,6 +39,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 # once uv is intalled:
 uv tool install ruff@latest
 uv tool install ty@latest
+uv tool install pynvim@latest
 ```
 
 And symlink the dotfiles:
