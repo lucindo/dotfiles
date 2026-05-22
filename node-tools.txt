@@ -1,0 +1,10 @@
+@google/gemini-cli
+@openai/codex
+eslint
+prettier
+typescript
+tsx
+pnpm
+npm-check-updates
+http-server
+tailwindcss
