@@ -2,9 +2,6 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		{ "mason-org/mason.nvim", opts = {} },
-		"mason-org/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		{ "j-hui/fidget.nvim", opts = {} }, -- Useful status updates for LSP.
 		"saghen/blink.cmp",
 	},
@@ -128,7 +125,14 @@ return {
 				end,
 			},
 		})
+
+		-- Servers are installed outside Neovim (Brew / mise-go / uv) and resolved
+		-- from PATH. We register capabilities + per-server settings here, then
+		-- enable them. nvim-lspconfig ships the base lsp/<name>.lua configs.
+		-- `ty` is intentionally absent: it's owned by tylsp-pep723 (PEP-723 aware).
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
+		vim.lsp.config("*", { capabilities = capabilities })
+
 		local servers = {
 			gopls = {
 				settings = {
@@ -163,27 +167,9 @@ return {
 			},
 			clangd = {},
 		}
-		local ensure_installed = vim.tbl_keys(servers or {})
-		-- Formatters to be installed
-		vim.list_extend(ensure_installed, {
-			"stylua",
-			"taplo",
-			"shfmt",
-			"prettier",
-			"clang-format",
-			"ruff",
-		})
-		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-		require("mason-lspconfig").setup({
-			ensure_installed = {}, -- explicitly set to an empty table
-			automatic_installation = false,
-			handlers = {
-				function(server_name)
-					local server = servers[server_name] or {}
-					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					require("lspconfig")[server_name].setup(server)
-				end,
-			},
-		})
+		for name, cfg in pairs(servers) do
+			vim.lsp.config(name, cfg)
+			vim.lsp.enable(name)
+		end
 	end,
 }

@@ -29,7 +29,6 @@ return {
 				indentscope_color = "lavender",
 			},
 			lsp_trouble = true,
-			mason = true,
 			markview = true,
 			telescope = {
 				enabled = true,
