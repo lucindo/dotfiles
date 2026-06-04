@@ -69,3 +69,26 @@ vim.keymap.set("n", "<leader>tt", function()
 	vim.api.nvim_win_set_height(0, 8)
 	vim.api.nvim_feedkeys("i", "n", false)
 end, { desc = "[T]oggle [t]erminal" })
+
+-- Open the cheatsheet in a floating window
+vim.keymap.set("n", "<leader>?", function()
+	local path = vim.fn.stdpath("config") .. "/nvim-cheatsheet.md"
+	local buf = vim.fn.bufadd(path)
+	vim.fn.bufload(buf)
+	vim.bo[buf].modifiable = false
+	local width = math.floor(vim.o.columns * 0.8)
+	local height = math.floor(vim.o.lines * 0.8)
+	vim.api.nvim_open_win(buf, true, {
+		relative = "editor",
+		width = width,
+		height = height,
+		row = math.floor((vim.o.lines - height) / 2),
+		col = math.floor((vim.o.columns - width) / 2),
+		style = "minimal",
+		border = "single",
+		title = " nvim cheatsheet ",
+		title_pos = "center",
+	})
+	vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = buf, nowait = true })
+	vim.keymap.set("n", "<Esc>", "<cmd>close<CR>", { buffer = buf, nowait = true })
+end, { desc = "Open cheatsheet" })
