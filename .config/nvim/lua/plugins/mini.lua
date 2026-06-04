@@ -54,6 +54,13 @@ return {
 			-- Status line
 			local statusline = require("mini.statusline")
 			statusline.setup({ use_icons = false })
+			-- Uppercase the mode name (NORMAL instead of Normal)
+			local section_mode = statusline.section_mode
+			---@diagnostic disable-next-line: duplicate-set-field
+			statusline.section_mode = function(args)
+				local mode, mode_hl = section_mode(args)
+				return mode:upper(), mode_hl
+			end
 			---@diagnostic disable-next-line: duplicate-set-field
 			statusline.section_location = function()
 				return "%2l:%-2v"
