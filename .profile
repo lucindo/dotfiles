@@ -54,6 +54,13 @@ eval "$(starship init bash)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export HOMEBREW_NO_ENV_HINTS=1
 
+# Keep `brew bundle dump` to native tap/brew/cask only
+export HOMEBREW_BUNDLE_DUMP_NO_GO=1
+export HOMEBREW_BUNDLE_DUMP_NO_UV=1
+export HOMEBREW_BUNDLE_DUMP_NO_NPM=1
+export HOMEBREW_BUNDLE_DUMP_NO_CARGO=1
+export HOMEBREW_BUNDLE_DUMP_NO_VSCODE=1
+
 # Mise
 eval "$(mise activate bash)"
 
