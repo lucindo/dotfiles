@@ -6,3 +6,4 @@ theme = catppuccin-frappe
 macos-option-as-alt = true
 term=xterm-256color
 bell-features = no-audio
+command = /opt/homebrew/bin/bash --login
