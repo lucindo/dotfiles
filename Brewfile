@@ -102,8 +102,6 @@ brew "stow"
 brew "stylua"
 # Tool Command Language
 brew "tcl-tk@8", link: true
-# Terminal multiplexer
-brew "tmux"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Parser generator tool
