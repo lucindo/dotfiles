@@ -1,7 +1,5 @@
 export CLICOLOR=1
 export LS_COLORS="$(vivid generate catppuccin-frappe)"
-export PROMPT='%n@%1~ %# '
-export PS1="$PROMPT"
 export LC_ALL=C.UTF-8
 
 if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
@@ -19,28 +17,17 @@ export FZF_DEFAULT_OPTS=" \
 --color=selected-bg:#51576D \
 --color=border:#737994,label:#C6D0F5"
 
-# No duplicate history when reverse-searching
+# History: ignore dups and lines starting with a space, share across sessions
+HISTFILE=~/.bash_history
 HISTSIZE=10000
-HISTFILE=~/.zsh_history
-SAVEHIST=10000
-HISTDUP=erase
-setopt appendhistory
-setopt incappendhistory
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
-setopt extended_history
-setopt hist_expire_dups_first
-setopt hist_ignore_space
-setopt hist_verify
+HISTFILESIZE=10000
+HISTCONTROL=ignoreboth:erasedups
+shopt -s histappend
+PROMPT_COMMAND='history -a'
 
 # Case insensitive completion
-autoload -U compinit && compinit
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-
-# Emacs-style keybindings
-bindkey -e
+bind 'set completion-ignore-case on'
+bind 'set completion-map-case on'
 
 # Aliases
 alias ll='ls -l'
@@ -53,20 +40,25 @@ alias claude-personal='CLAUDE_CONFIG_DIR=~/.claude-personal claude'
 . "$HOME/.local/bin/env"
 
 # Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+eval "$(fzf --bash)"
+
+# Homebrew-managed bash completions
+if [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]]; then
+    source "/opt/homebrew/etc/profile.d/bash_completion.sh"
+fi
 
 # Starship prompt
-eval "$(starship init zsh)"
+eval "$(starship init bash)"
 
 # Homebrew envs
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export HOMEBREW_NO_ENV_HINTS=1
 
 # Mise
-eval "$(mise activate zsh)"
+eval "$(mise activate bash)"
 
 # Generate uv completions
 if type uv &>/dev/null; then
-    eval "$(uv generate-shell-completion zsh)"
+    eval "$(uv generate-shell-completion bash)"
     export PYTHONDONTWRITEBYTECODE=1
 fi

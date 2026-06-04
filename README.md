@@ -58,6 +58,13 @@ stow -t $HOME -R .
 
 You can now edit the files in `~/Code/dotfiles` and they will be symlinked to `~/`.
 
+The shell config (`.bash_profile` → `.profile`) targets the Homebrew `bash`, not the macOS system bash. Make it your login shell:
+
+```bash
+echo /opt/homebrew/bin/bash | sudo tee -a /etc/shells
+chsh -s /opt/homebrew/bin/bash
+```
+
 To remove the symlinks, run:
 
 ```bash

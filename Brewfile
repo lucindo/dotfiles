@@ -12,6 +12,10 @@ brew "automake"
 brew "aws-sam-cli"
 # Official Amazon AWS command-line interface
 brew "awscli"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Programmable completion for Bash 4.2+
+brew "bash-completion@2"
 # Parser generator
 brew "bison"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
