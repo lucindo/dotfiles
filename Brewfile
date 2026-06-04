@@ -84,12 +84,12 @@ brew "nvtop"
 brew "ripgrep"
 # AI coding agent, built for the terminal
 brew "opencode"
+# Vulnerability scanner which uses the OSV database
+brew "osv-scanner"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
 # Show ps output as a tree
 brew "pstree"
-# CLI proxy to minimize LLM token consumption
-brew "rtk"
 # Steel Bank Common Lisp system
 brew "sbcl"
 # SQL linter and auto-formatter for Humans
@@ -100,6 +100,8 @@ brew "starship"
 brew "stow"
 # Opinionated Lua code formatter
 brew "stylua"
+# Tool Command Language
+brew "tcl-tk@8", link: true
 # Terminal multiplexer
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
@@ -121,8 +123,37 @@ brew "tw93/tap/mole"
 cask "font-blex-mono-nerd-font"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+go "github.com/air-verse/air"
+go "github.com/mibk/dupl"
+go "github.com/kisielk/errcheck"
 go "cmd/go"
+go "github.com/go-critic/go-critic/cmd/go-critic"
+go "github.com/uudashr/gocognit/cmd/gocognit"
+go "github.com/jgautheron/goconst/cmd/goconst"
+go "github.com/fzipp/gocyclo/cmd/gocyclo"
 go "cmd/gofmt"
+go "mvdan.cc/gofumpt"
+go "golang.org/x/tools/cmd/goimports"
+go "github.com/golangci/golangci-lint/v2/cmd/golangci-lint"
+go "golang.org/x/tools/gopls"
+go "github.com/securego/gosec/v2/cmd/gosec"
+go "golang.org/x/vuln/cmd/govulncheck"
+go "github.com/vektra/mockery/v3"
+go "github.com/alexkohler/nakedret/v2/cmd/nakedret"
+go "github.com/sonatard/noctx/cmd/noctx"
+go "github.com/mgechev/revive"
+go "github.com/gleicon/tldt/cmd/tldt"
 uv "pynvim"
 uv "ruff"
 uv "ty"
+npm "@google/gemini-cli"
+npm "@openai/codex"
+npm "eslint"
+npm "http-server"
+npm "neovim"
+npm "npm-check-updates"
+npm "pnpm"
+npm "prettier"
+npm "tailwindcss"
+npm "tsx"
+npm "typescript"

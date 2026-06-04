@@ -8,3 +8,4 @@ pnpm
 npm-check-updates
 http-server
 tailwindcss
+neovim
