@@ -2,10 +2,10 @@
 
 Personal dotfiles, using [GNU stow](https://www.gnu.org/software/stow/manual/stow.html) to manage them.
 
-On max OS X, first install [brew](https://brew.sh/):
+On macOS, first install [brew](https://brew.sh/):
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)""
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 Then clone this repo:
@@ -27,7 +27,7 @@ mise plugins add lua
 mise use -g lua@5.1
 mise use -g node
 mise use -g rust@nightly
-muse use -g go
+mise use -g go
 mise use -g python
 ```
 
@@ -36,10 +36,17 @@ Also using a few things outside `brew` for python support (Astro tools):
 ```bash
 # install uv, and reload .profile after so paths work properly
 curl -LsSf https://astral.sh/uv/install.sh | sh
-# once uv is intalled:
+# once uv is installed:
 uv tool install ruff@latest
 uv tool install ty@latest
 uv tool install pynvim@latest
+```
+
+Install the Go and Node CLI tools (re-run after upgrading the `go`/`node` versions in `mise`):
+
+```bash
+./go-tools-install.sh
+./node-tools-install.sh
 ```
 
 And symlink the dotfiles:
