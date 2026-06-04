@@ -30,8 +30,8 @@ vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
--- Back to Netrw
-vim.keymap.set({ "n", "v" }, "<leader>te", vim.cmd.Ex, { desc = "[T]oggle file [e]xplorer" })
+-- File explorer (Oil replaces netrw)
+vim.keymap.set({ "n", "v" }, "<leader>te", "<cmd>Oil<CR>", { desc = "[T]oggle file [e]xplorer" })
 
 -- Little one from Primeagen to mass replace string in a file
 vim.keymap.set(
