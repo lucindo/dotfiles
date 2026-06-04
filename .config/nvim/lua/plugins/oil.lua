@@ -13,6 +13,7 @@ return {
 			default_file_explorer = true, -- Replaces Ex
 			use_default_keymaps = true,
 			delete_to_trash = false,
+			watch_for_changes = true, -- auto-reload when the dir changes on disk
 			view_options = {
 				show_hidden = true,
 				natural_order = true,
