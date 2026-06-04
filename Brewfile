@@ -12,6 +12,8 @@ brew "automake"
 brew "aws-sam-cli"
 # Official Amazon AWS command-line interface
 brew "awscli"
+# GNU internationalization (i18n) and localization (l10n) library
+brew "gettext"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Programmable completion for Bash 4.2+
@@ -22,8 +24,6 @@ brew "bison"
 brew "btop"
 # Software library to render fonts
 brew "freetype"
-# GNU internationalization (i18n) and localization (l10n) library
-brew "gettext"
 # Cross-platform make
 brew "cmake"
 # GNU File, Shell, and Text utilities
