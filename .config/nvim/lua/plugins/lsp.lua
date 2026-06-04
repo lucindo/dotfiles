@@ -161,7 +161,6 @@ return {
 					},
 				},
 			},
-			ty = {},
 			clangd = {},
 		}
 		local ensure_installed = vim.tbl_keys(servers or {})
@@ -186,8 +185,5 @@ return {
 				end,
 			},
 		})
-		if vim.lsp.is_enabled("ty") then
-			vim.lsp.enable("ty", false)
-		end
 	end,
 }
