@@ -5,3 +5,4 @@ window-height = 48
 theme = catppuccin-frappe
 macos-option-as-alt = true
 term=xterm-256color
+bell-features = no-audio
