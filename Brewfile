@@ -24,6 +24,8 @@ brew "bison"
 brew "btop"
 # Software library to render fonts
 brew "freetype"
+# Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
+brew "clang-format"
 # Cross-platform make
 brew "cmake"
 # GNU File, Shell, and Text utilities
@@ -74,6 +76,8 @@ brew "libzip"
 brew "llama.cpp"
 # Next-gen compiler infrastructure
 brew "llvm"
+# Language server that offers Lua language support
+brew "lua-language-server"
 # Package manager for the Lua programming language
 brew "luarocks"
 # Apple Silicon Monitor Top written in Go Lang
@@ -96,6 +100,8 @@ brew "pkgconf"
 brew "pstree"
 # Steel Bank Common Lisp system
 brew "sbcl"
+# Autoformat shell script source code
+brew "shfmt"
 # SQL linter and auto-formatter for Humans
 brew "sqlfluff"
 # Cross-shell prompt for astronauts
@@ -104,6 +110,8 @@ brew "starship"
 brew "stow"
 # Opinionated Lua code formatter
 brew "stylua"
+# TOML toolkit written in Rust
+brew "taplo"
 # Tool Command Language
 brew "tcl-tk@8", link: true
 # Display directories as trees (with optional color/HTML output)
