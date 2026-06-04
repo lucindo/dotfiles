@@ -58,6 +58,15 @@ if [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]]; then
     source "/opt/homebrew/etc/profile.d/bash_completion.sh"
 fi
 
+# Git subcommand completion (git ships its own; not bundled by bash-completion@2).
+# After fzf so it reclaims the `git` completion slot. Path derived from the
+# git binary so it works on CommandLineTools, Xcode, or brew git.
+if command -v git &>/dev/null; then
+    _git_comp="$(git --exec-path)/../../share/git-core/git-completion.bash"
+    [[ -r "$_git_comp" ]] && source "$_git_comp"
+    unset _git_comp
+fi
+
 # Starship prompt
 eval "$(starship init bash)"
 
