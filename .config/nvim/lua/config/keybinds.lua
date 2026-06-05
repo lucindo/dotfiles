@@ -76,6 +76,10 @@ vim.keymap.set("n", "<leader>?", function()
 	local buf = vim.fn.bufadd(path)
 	vim.fn.bufload(buf)
 	vim.bo[buf].modifiable = false
+	-- Show raw markdown: keep markview from rendering this buffer
+	pcall(function()
+		require("markview").actions.disable(buf)
+	end)
 	local width = math.floor(vim.o.columns * 0.8)
 	local height = math.floor(vim.o.lines * 0.8)
 	vim.api.nvim_open_win(buf, true, {
