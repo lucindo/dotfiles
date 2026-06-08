@@ -31,6 +31,12 @@ mise use -g go
 mise use -g python
 ```
 
+Upgrading `mise`:
+
+```bash
+mise update # --dry-run
+```
+
 Also using a few things outside `brew` for python support (Astro tools):
 
 ```bash
@@ -40,6 +46,13 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 uv tool install ruff@latest
 uv tool install ty@latest
 uv tool install pynvim@latest
+```
+
+Upgrading `uv` and tools:
+
+```bash
+uv self update
+uv tool upgrade --all
 ```
 
 Install the Go and Node CLI tools (re-run after upgrading the `go`/`node` versions in `mise`):
