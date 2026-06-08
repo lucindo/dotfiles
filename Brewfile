@@ -76,7 +76,7 @@ brew "libzip"
 brew "llama.cpp"
 # Next-gen compiler infrastructure
 brew "llvm"
-# Language server that offers Lua language support
+# Language Server for the Lua language
 brew "lua-language-server"
 # Package manager for the Lua programming language
 brew "luarocks"
@@ -100,6 +100,8 @@ brew "pkgconf"
 brew "pstree"
 # Steel Bank Common Lisp system
 brew "sbcl"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
 # Autoformat shell script source code
 brew "shfmt"
 # SQL linter and auto-formatter for Humans
