@@ -78,3 +78,7 @@ if type uv &>/dev/null; then
     eval "$(uv generate-shell-completion bash)"
     export PYTHONDONTWRITEBYTECODE=1
 fi
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/lucindo/.local/bin:$PATH"

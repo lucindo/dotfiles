@@ -1,4 +1,3 @@
-@google/gemini-cli
 @openai/codex
 eslint
 prettier
