@@ -128,6 +128,8 @@ brew "watch"
 brew "wget"
 # Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
+# Feature-rich command-line audio/video downloader
+brew "yt-dlp"
 # General-purpose lossless data-compression library
 brew "zlib"
 # Comprehensive macOS cleanup and application uninstall tool
