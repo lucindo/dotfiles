@@ -1,5 +1,4 @@
-tap "sst/tap"
-tap "tw93/tap"
+tap "tw93/tap", trusted: true
 # Search tool like grep, but optimized for programmers
 brew "ack"
 # Library for manipulating PNG images
@@ -137,3 +136,5 @@ brew "tw93/tap/mole"
 cask "font-blex-mono-nerd-font"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+# Speech to text application
+cask "handy"
