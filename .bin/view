@@ -40,12 +40,12 @@ open_browser() {
     CMUX_OPEN_TAB_LABEL=view exec "$here/cmux-open-tab" browser open "file://$abs"
 }
 
-# Render a markdown file to a themed dark-mode HTML file under the view cache
-# and echo its absolute path. The source is embedded base64 (no escaping, UTF-8
-# safe) and rendered client-side by markdown-it with the GitHub-dark stylesheet,
-# all from a CDN. A <base> tag keeps relative images/links resolving against the
-# source directory. Output is keyed by source path so re-viewing overwrites
-# rather than littering the cache.
+# Render a markdown file to a themed HTML file under the view cache and echo its
+# absolute path. The source is embedded base64 (no escaping, UTF-8 safe) and
+# rendered client-side by markdown-it (with highlight.js and mermaid), styled
+# with a Catppuccin Frappe theme -- all from a CDN. A <base> tag keeps relative
+# images/links resolving against the source directory. Output is keyed by source
+# path so re-viewing overwrites rather than littering the cache.
 render_markdown() {
     local src="$1" dir title cache out b64
     dir="$(dirname -- "$src")"
