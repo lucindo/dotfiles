@@ -150,3 +150,19 @@ cmux-md-tab() {
     cmux move-surface --surface "$surface" --pane "$pane" --focus true >/dev/null
 }
 alias md='cmux-md-tab'
+
+# Tab-complete only markdown files (and directories, to descend into them).
+_cmux_md_tab() {
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    if declare -F _filedir >/dev/null; then
+        _filedir '@(md|markdown|mkd|mdown|MD)'
+        return
+    fi
+    # Fallback when bash-completion's _filedir isn't loaded: match markdown
+    # extensions (case-insensitively) and still offer directories to descend.
+    local restore; restore="$(shopt -p extglob nocaseglob nocasematch)"
+    shopt -s extglob nocaseglob nocasematch
+    COMPREPLY=( $(compgen -o plusdirs -f -X '!*.@(md|markdown|mkd|mdown)' -- "$cur") )
+    eval "$restore"
+}
+complete -o filenames -F _cmux_md_tab cmux-md-tab md
