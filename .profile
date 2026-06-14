@@ -177,3 +177,29 @@ _cmux_md_tab() {
     eval "$restore"
 }
 complete -o filenames -F _cmux_md_tab cmux-md-tab md
+
+# Tab-complete br with http(s) URLs seen in shell history. cmux exposes no
+# readable browser history, so the shell's own history is the next-best source.
+_cmux_browser_tab() {
+    # Take the word under the cursor using whitespace boundaries only, so URLs
+    # (which contain ':') aren't split apart by COMP_WORDBREAKS.
+    local line="${COMP_LINE:0:${COMP_POINT:-${#COMP_LINE}}}"
+    local cur="${line##* }"
+
+    local urls
+    urls="$( { history 2>/dev/null | sed 's/^[ 0-9]*//'; cat "${HISTFILE:-$HOME/.bash_history}" 2>/dev/null; } \
+        | grep -oE 'https?://[^[:space:]"'\'']+' \
+        | sort -u )"
+
+    COMPREPLY=( $(compgen -W "$urls" -- "$cur") )
+
+    # When ':' is a word-break char, readline replaces only the text after the
+    # last ':', so strip that leading portion from each candidate to match.
+    if [[ $COMP_WORDBREAKS == *:* && $cur == *:* ]]; then
+        local head="${cur%"${cur##*:}"}" i
+        for i in "${!COMPREPLY[@]}"; do
+            COMPREPLY[i]="${COMPREPLY[i]#"$head"}"
+        done
+    fi
+}
+complete -F _cmux_browser_tab cmux-browser-tab br
