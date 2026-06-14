@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Open a markdown file in cmux's formatted viewer as a tab in the current pane.
+# Usage: md <file.md>
+if [[ $# -ne 1 ]]; then
+    echo "usage: md <file.md>" >&2
+    exit 2
+fi
+here="$(cd "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+CMUX_OPEN_TAB_LABEL=md exec "$here/cmux-open-tab" markdown open "$1"

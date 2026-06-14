@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+# view: visualize files from the terminal.
+#
+# For browser-renderable files (images, PDFs, SVG, HTML, web media) this opens
+# the file in a cmux browser tab via a file:// URL (rendered by Chromium). For
+# anything else it falls back to a read-only editor, preserving the role of the
+# system `view` (/usr/bin/view -> vim) that this shadows.
+#
+# Single file only for browser viewing; multiple files / no cmux -> editor.
+# Set VIEW_DRY_RUN=1 to print the chosen action instead of performing it.
+set -uo pipefail
+
+# Browser-renderable extensions (lowercase, no dot).
+browser_exts='png jpg jpeg gif webp bmp ico avif svg tif tiff apng jxl
+              pdf
+              htm html
+              mp4 webm m4v
+              mp3 wav ogg flac m4a'
+
+edit() {
+    if [[ -n "${VIEW_DRY_RUN:-}" ]]; then
+        printf 'edit: %s %s\n' "$(command -v nvim >/dev/null 2>&1 && echo 'nvim -R' || echo '/usr/bin/view')" "$*"
+        exit 0
+    fi
+    if command -v nvim >/dev/null 2>&1; then
+        exec nvim -R "$@"
+    fi
+    exec /usr/bin/view "$@"
+}
+
+# No file, not inside cmux, or more than one file -> just edit.
+if [[ $# -eq 0 || $# -gt 1 || -z "${CMUX_SURFACE_ID:-}" ]]; then
+    edit "$@"
+fi
+
+file="$1"
+if [[ ! -e "$file" ]]; then
+    echo "view: no such file: $file" >&2
+    exit 1
+fi
+
+# Lowercase extension.
+ext="${file##*.}"
+ext="$(printf '%s' "$ext" | tr '[:upper:]' '[:lower:]')"
+
+# Not browser-renderable (or no extension) -> edit.
+case " $(echo $browser_exts) " in
+    *" $ext "*) : ;;
+    *) edit "$file" ;;
+esac
+
+# Absolute path (cmux/Chromium handles percent-encoding of the file:// URL).
+dir="$(cd "$(dirname -- "$file")" 2>/dev/null && pwd)" \
+    || { echo "view: cannot resolve path: $file" >&2; exit 1; }
+abs="$dir/$(basename -- "$file")"
+
+if [[ -n "${VIEW_DRY_RUN:-}" ]]; then
+    printf 'browser: file://%s\n' "$abs"
+    exit 0
+fi
+
+here="$(cd "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+CMUX_OPEN_TAB_LABEL=view exec "$here/cmux-open-tab" browser open "file://$abs"

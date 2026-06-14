@@ -2,6 +2,10 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export HOMEBREW_NO_ENV_HINTS=1
 
+# Personal scripts (~/.bin is hidden from Finder). Prepended so it precedes
+# /usr/bin — lets our `view` shadow the system one (/usr/bin/view -> vim).
+export PATH="$HOME/.bin:$PATH"
+
 # Keep `brew bundle dump` to native tap/brew/cask only
 export HOMEBREW_BUNDLE_DUMP_NO_GO=1
 export HOMEBREW_BUNDLE_DUMP_NO_UV=1
@@ -122,48 +126,8 @@ yt() {
     fabric -y "$video_link" $transcript_flag
 }
 
-# Run a cmux "open" command (which always splits) and move the new surface into
-# the calling pane, turning it into a TAB. Usage: _cmux_open_as_tab <cmux args...>
-_cmux_open_as_tab() {
-    local who="${FUNCNAME[1]:-cmux}"
-    if [ -z "$CMUX_SURFACE_ID" ]; then
-        echo "$who: not running inside cmux" >&2
-        return 1
-    fi
-
-    local pane out surface
-    pane="$(cmux identify 2>/dev/null \
-        | awk '/"caller"/{f=1} f&&/pane_ref/{gsub(/.*: "|".*/,""); print; exit}')"
-    if [ -z "$pane" ]; then
-        echo "$who: could not determine current pane" >&2
-        return 1
-    fi
-
-    out="$(cmux "$@")" || return 1
-    surface="$(printf '%s\n' "$out" | sed -n 's/.*surface=\([^ ]*\).*/\1/p')"
-    if [ -z "$surface" ]; then
-        echo "$who: could not parse new surface from: $out" >&2
-        return 1
-    fi
-
-    cmux move-surface --surface "$surface" --pane "$pane" --focus true >/dev/null
-}
-
-# Open a markdown file in cmux's formatted viewer as a tab in the current pane.
-cmux-md-tab() {
-    if [ "$#" -ne 1 ]; then
-        echo "Usage: cmux-md-tab <file.md>"
-        return 1
-    fi
-    _cmux_open_as_tab markdown open "$1"
-}
-alias md='cmux-md-tab'
-
-# Open a browser (optional URL) as a tab in the current pane.
-cmux-browser-tab() {
-    _cmux_open_as_tab browser open "$@"
-}
-alias br='cmux-browser-tab'
+# cmux helpers `md`, `br`, `view` (and shared `cmux-open-tab`) live in ~/.bin.
+# The completions for `md` and `br` stay here since completion is shell-level.
 
 # Tab-complete only markdown files (and directories, to descend into them).
 _cmux_md_tab() {
@@ -179,7 +143,7 @@ _cmux_md_tab() {
     COMPREPLY=( $(compgen -o plusdirs -f -X '!*.@(md|markdown|mkd|mdown)' -- "$cur") )
     eval "$restore"
 }
-complete -o filenames -F _cmux_md_tab cmux-md-tab md
+complete -o filenames -F _cmux_md_tab md
 
 # Tab-complete br with http(s) URLs seen in shell history. cmux exposes no
 # readable browser history, so the shell's own history is the next-best source.
@@ -205,4 +169,4 @@ _cmux_browser_tab() {
         done
     fi
 }
-complete -F _cmux_browser_tab cmux-browser-tab br
+complete -F _cmux_browser_tab br
