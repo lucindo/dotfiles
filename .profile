@@ -33,6 +33,9 @@ HISTFILE=~/.bash_history
 HISTSIZE=10000
 HISTFILESIZE=10000
 HISTCONTROL=ignoreboth:erasedups
+# Don't record trivial/navigation commands (glob patterns matched against the
+# whole line; 'cd' and 'cd *' are separate cases).
+HISTIGNORE='ls:ls *:ll:la:l:cd:cd *:..:...:pwd:clear:exit:logout:history:history *:bg:fg:jobs'
 shopt -s histappend
 PROMPT_COMMAND='history -a'
 
