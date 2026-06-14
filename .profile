@@ -118,3 +118,35 @@ yt() {
     local video_link="$1"
     fabric -y "$video_link" $transcript_flag
 }
+
+# Open a markdown file in cmux's formatted viewer as a TAB in the current pane.
+# `cmux markdown open` only ever creates a split, so this opens the viewer and
+# then moves the new surface into the calling pane, turning it into a tab.
+cmux-md-tab() {
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: cmux-md-tab <file.md>"
+        return 1
+    fi
+    if [ -z "$CMUX_SURFACE_ID" ]; then
+        echo "cmux-md-tab: not running inside cmux" >&2
+        return 1
+    fi
+
+    local pane out surface
+    pane="$(cmux identify 2>/dev/null \
+        | awk '/"caller"/{f=1} f&&/pane_ref/{gsub(/.*: "|".*/,""); print; exit}')"
+    if [ -z "$pane" ]; then
+        echo "cmux-md-tab: could not determine current pane" >&2
+        return 1
+    fi
+
+    out="$(cmux markdown open "$1")" || return 1
+    surface="$(printf '%s\n' "$out" | sed -n 's/.*surface=\([^ ]*\).*/\1/p')"
+    if [ -z "$surface" ]; then
+        echo "cmux-md-tab: could not parse new surface from: $out" >&2
+        return 1
+    fi
+
+    cmux move-surface --surface "$surface" --pane "$pane" --focus true >/dev/null
+}
+alias md='cmux-md-tab'
