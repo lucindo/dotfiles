@@ -23,3 +23,9 @@ _darcs
 ^/COPYING
 
 Brewfile
+
+# Tool installers / manifests — run from the repo, not symlinked into $HOME
+go-tools-install\.sh
+go-tools\.txt
+node-tools-install\.sh
+node-tools\.txt
