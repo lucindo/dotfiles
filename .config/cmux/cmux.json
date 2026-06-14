@@ -8,8 +8,11 @@
   // cmux creates this template on launch when ~/.config/cmux/cmux.json is missing.
   // Legacy settings.json files are read only as fallback for keys not present here.
 
+  // false (not true!): with true, cmux pins new tabs to the workspace's static
+  // root dir. false leaves it unset so Ghostty's working-directory=inherit uses
+  // the focused terminal's live OSC 7 cwd (fed by the vendored ghostty.bash).
   "app": {
-    "workspaceInheritWorkingDirectory": true
+    "workspaceInheritWorkingDirectory": false
   },
 
   //   "app" : {

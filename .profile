@@ -82,6 +82,13 @@ fi
 # Added by Antigravity CLI installer
 export PATH="/Users/lucindo/.local/bin:$PATH"
 
+# cmux ships its own shell integration and doesn't expose Ghostty's, so source
+# the vendored copy to get OSC 7 cwd reporting (needed for inherit-working-directory).
+GHOSTTY_SHELL_INTEGRATION="$HOME/.config/ghostty/shell-integration/bash/ghostty.bash"
+if [ -r "${GHOSTTY_SHELL_INTEGRATION}" ]; then
+  builtin source "${GHOSTTY_SHELL_INTEGRATION}"
+fi
+
 FABRIC_ALIAS_PREFIX="fab-"
 # Loop through all files in the ~/.config/fabric/patterns directory
 for pattern_file in $HOME/.config/fabric/patterns/*; do

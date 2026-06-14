@@ -7,3 +7,6 @@ macos-option-as-alt = true
 term=xterm-256color
 bell-features = no-audio
 command = /opt/homebrew/bin/bash --login
+tab-inherit-working-directory = true
+window-inherit-working-directory = true
+split-inherit-working-directory = true
