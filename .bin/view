@@ -28,6 +28,142 @@ edit() {
     exec /usr/bin/view "$@"
 }
 
+# Open an absolute file path as a cmux browser tab in the calling pane.
+open_browser() {
+    local abs="$1"
+    if [[ -n "${VIEW_DRY_RUN:-}" ]]; then
+        printf 'browser: file://%s\n' "$abs"
+        exit 0
+    fi
+    local here
+    here="$(cd "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+    CMUX_OPEN_TAB_LABEL=view exec "$here/cmux-open-tab" browser open "file://$abs"
+}
+
+# Render a markdown file to a themed dark-mode HTML file under the view cache
+# and echo its absolute path. The source is embedded base64 (no escaping, UTF-8
+# safe) and rendered client-side by markdown-it with the GitHub-dark stylesheet,
+# all from a CDN. A <base> tag keeps relative images/links resolving against the
+# source directory. Output is keyed by source path so re-viewing overwrites
+# rather than littering the cache.
+render_markdown() {
+    local src="$1" dir title cache out b64
+    dir="$(dirname -- "$src")"
+    title="$(basename -- "$src")"
+    cache="${XDG_CACHE_HOME:-$HOME/.cache}/mdview"
+    mkdir -p "$cache" || { echo "view: cannot create cache dir: $cache" >&2; exit 1; }
+    out="$cache/$(printf '%s' "$src" | shasum | awk '{print $1}').html"
+    b64="$(base64 < "$src" | tr -d '\n')" \
+        || { echo "view: cannot read: $src" >&2; exit 1; }
+    cat > "$out" <<EOF
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="file://$dir/">
+<title>$title</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown-dark.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.min.css">
+<style>
+  :root { color-scheme: dark; }
+  /* Catppuccin Frappe reading theme (matches the repo's ghostty/nvim/delta).
+     github-markdown-css@5 hardcodes GitHub-dark hexes (no CSS variables), so
+     we override its colors directly; !important keeps it robust against the
+     minified rules. Layout/spacing from github-markdown-css is left intact. */
+  html, body { background: #303446; }            /* base */
+  body { margin: 0; padding: 2.5rem 1.25rem 6rem; }
+  .markdown-body {
+    max-width: min(1100px, 92%);   /* scales with the window, capped for reading */
+    margin: 0 auto;
+    line-height: 1.7;
+    color: #a5adce !important;                   /* subtext0 - body text */
+    background: #303446 !important;              /* base */
+  }
+  /* Headings/bold use Frappe text (brightest) for hierarchy without glare. */
+  .markdown-body h1, .markdown-body h2, .markdown-body h3,
+  .markdown-body h4, .markdown-body h5, .markdown-body h6,
+  .markdown-body strong { color: #c6d0f5 !important; }
+  .markdown-body a { color: #8caaee !important; } /* blue - links */
+  /* Code: mantle blocks, translucent surface0 for inline spans. */
+  .markdown-body pre,
+  .markdown-body .highlight pre { background: #292c3c !important; color: #c6d0f5 !important; }
+  .markdown-body code, .markdown-body tt { background: #41455966 !important; color: #c6d0f5 !important; }
+  .markdown-body pre code, .markdown-body pre tt { background: transparent !important; }
+  /* Mermaid diagrams: no code-box chrome, centered. */
+  .markdown-body pre.mermaid { background: transparent !important; border: 0; padding: 0; text-align: center; }
+  /* Tables: base rows, mantle zebra, surface borders. */
+  .markdown-body table tr { background: #303446 !important; border-top-color: #51576d !important; }
+  .markdown-body table tr:nth-child(2n) { background: #292c3c !important; }
+  .markdown-body table th, .markdown-body table td { border-color: #51576d !important; }
+  /* Rules, heading underlines, blockquote. */
+  .markdown-body hr { background: #51576d !important; }
+  .markdown-body h1, .markdown-body h2 { border-bottom-color: #51576d !important; }
+  .markdown-body blockquote { color: #838ba7 !important; border-left-color: #51576d !important; }
+</style>
+</head>
+<body>
+<article id="content" class="markdown-body"></article>
+<script src="https://cdn.jsdelivr.net/npm/markdown-it@14/dist/markdown-it.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/markdown-it-task-lists@2/dist/markdown-it-task-lists.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  var bytes = Uint8Array.from(atob("$b64"), function (c) { return c.charCodeAt(0); });
+  var src = new TextDecoder("utf-8").decode(bytes);
+  var hljs = window.hljs;
+  function esc(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  // Syntax-highlight fenced blocks: use the tagged language when hljs knows it,
+  // else auto-detect, else fall back to escaped plain text. The Catppuccin
+  // Frappe hljs stylesheet colors the resulting tokens.
+  function highlight(str, lang) {
+    // Hand mermaid blocks to mermaid.js (below), not the syntax highlighter.
+    if (lang === "mermaid") return "<pre class=\"mermaid\">" + esc(str) + "</pre>";
+    var body;
+    if (hljs && lang && hljs.getLanguage(lang)) {
+      try { body = hljs.highlight(str, { language: lang, ignoreIllegals: true }).value; } catch (e) {}
+    }
+    if (body === undefined && hljs) {
+      try { body = hljs.highlightAuto(str).value; } catch (e) {}
+    }
+    if (body === undefined) body = esc(str);
+    return "<pre><code class=\"hljs\">" + body + "</code></pre>";
+  }
+  var md = window.markdownit({ html: true, linkify: true, typographer: true, highlight: highlight });
+  if (window.markdownitTaskLists) md.use(window.markdownitTaskLists);
+  document.getElementById("content").innerHTML = md.render(src);
+  // Render any mermaid blocks, themed to match Frappe.
+  if (window.mermaid) {
+    window.mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: "loose",
+      theme: "base",
+      themeVariables: {
+        darkMode: true,
+        background: "#303446",
+        primaryColor: "#414559",
+        primaryTextColor: "#c6d0f5",
+        primaryBorderColor: "#838ba7",
+        secondaryColor: "#51576d",
+        tertiaryColor: "#292c3c",
+        lineColor: "#949cbb",
+        textColor: "#c6d0f5",
+        noteBkgColor: "#51576d",
+        noteTextColor: "#c6d0f5",
+        noteBorderColor: "#838ba7"
+      }
+    });
+    window.mermaid.run({ querySelector: ".mermaid" });
+  }
+</script>
+</body>
+</html>
+EOF
+    printf '%s\n' "$out"
+}
+
 # No file, not inside cmux, or more than one file -> just edit.
 if [[ $# -eq 0 || $# -gt 1 || -z "${CMUX_SURFACE_ID:-}" ]]; then
     edit "$@"
@@ -43,21 +179,27 @@ fi
 ext="${file##*.}"
 ext="$(printf '%s' "$ext" | tr '[:upper:]' '[:lower:]')"
 
-# Not browser-renderable (or no extension) -> edit.
-case " $(echo $browser_exts) " in
-    *" $ext "*) : ;;
-    *) edit "$file" ;;
-esac
-
 # Absolute path (cmux/Chromium handles percent-encoding of the file:// URL).
 dir="$(cd "$(dirname -- "$file")" 2>/dev/null && pwd)" \
     || { echo "view: cannot resolve path: $file" >&2; exit 1; }
 abs="$dir/$(basename -- "$file")"
 
-if [[ -n "${VIEW_DRY_RUN:-}" ]]; then
-    printf 'browser: file://%s\n' "$abs"
-    exit 0
-fi
+# Markdown -> render to a themed dark HTML file, then view that in the browser.
+# (`md` still opens the plain cmux viewer; `view` is the readable-themed path.)
+case "$ext" in
+    md|markdown|mdown|mkd|mkdn|mdwn)
+        if [[ -n "${VIEW_DRY_RUN:-}" ]]; then
+            printf 'markdown: %s -> themed html -> browser\n' "$abs"
+            exit 0
+        fi
+        open_browser "$(render_markdown "$abs")"
+        ;;
+esac
 
-here="$(cd "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-CMUX_OPEN_TAB_LABEL=view exec "$here/cmux-open-tab" browser open "file://$abs"
+# Other browser-renderable files open directly; anything else -> edit.
+case " $(echo $browser_exts) " in
+    *" $ext "*) : ;;
+    *) edit "$file" ;;
+esac
+
+open_browser "$abs"
