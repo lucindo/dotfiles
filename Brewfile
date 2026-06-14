@@ -1,3 +1,4 @@
+tap "manaflow-ai/cmux", trusted: true
 tap "tw93/tap", trusted: true
 # Search tool like grep, but optimized for programmers
 brew "ack"
@@ -133,6 +134,8 @@ brew "yt-dlp"
 brew "zlib"
 # Comprehensive macOS cleanup and application uninstall tool
 brew "tw93/tap/mole"
+# Ghostty-based terminal with vertical tabs and notifications for AI coding agents
+cask "cmux"
 cask "font-blex-mono-nerd-font"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
