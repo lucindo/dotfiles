@@ -119,16 +119,12 @@ yt() {
     fabric -y "$video_link" $transcript_flag
 }
 
-# Open a markdown file in cmux's formatted viewer as a TAB in the current pane.
-# `cmux markdown open` only ever creates a split, so this opens the viewer and
-# then moves the new surface into the calling pane, turning it into a tab.
-cmux-md-tab() {
-    if [ "$#" -ne 1 ]; then
-        echo "Usage: cmux-md-tab <file.md>"
-        return 1
-    fi
+# Run a cmux "open" command (which always splits) and move the new surface into
+# the calling pane, turning it into a TAB. Usage: _cmux_open_as_tab <cmux args...>
+_cmux_open_as_tab() {
+    local who="${FUNCNAME[1]:-cmux}"
     if [ -z "$CMUX_SURFACE_ID" ]; then
-        echo "cmux-md-tab: not running inside cmux" >&2
+        echo "$who: not running inside cmux" >&2
         return 1
     fi
 
@@ -136,20 +132,35 @@ cmux-md-tab() {
     pane="$(cmux identify 2>/dev/null \
         | awk '/"caller"/{f=1} f&&/pane_ref/{gsub(/.*: "|".*/,""); print; exit}')"
     if [ -z "$pane" ]; then
-        echo "cmux-md-tab: could not determine current pane" >&2
+        echo "$who: could not determine current pane" >&2
         return 1
     fi
 
-    out="$(cmux markdown open "$1")" || return 1
+    out="$(cmux "$@")" || return 1
     surface="$(printf '%s\n' "$out" | sed -n 's/.*surface=\([^ ]*\).*/\1/p')"
     if [ -z "$surface" ]; then
-        echo "cmux-md-tab: could not parse new surface from: $out" >&2
+        echo "$who: could not parse new surface from: $out" >&2
         return 1
     fi
 
     cmux move-surface --surface "$surface" --pane "$pane" --focus true >/dev/null
 }
+
+# Open a markdown file in cmux's formatted viewer as a tab in the current pane.
+cmux-md-tab() {
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: cmux-md-tab <file.md>"
+        return 1
+    fi
+    _cmux_open_as_tab markdown open "$1"
+}
 alias md='cmux-md-tab'
+
+# Open a browser (optional URL) as a tab in the current pane.
+cmux-browser-tab() {
+    _cmux_open_as_tab browser open "$@"
+}
+alias br='cmux-browser-tab'
 
 # Tab-complete only markdown files (and directories, to descend into them).
 _cmux_md_tab() {
