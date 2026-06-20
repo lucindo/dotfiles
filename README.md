@@ -34,7 +34,7 @@ mise use -g python
 Upgrading `mise`:
 
 ```bash
-mise update # --dry-run
+mise upgrade # --dry-run
 ```
 
 Also using a few things outside `brew` for python support (Astro tools):
