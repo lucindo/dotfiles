@@ -22,6 +22,8 @@ brew "bash-completion@2"
 brew "bison"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
+# Incredibly fast JavaScript runtime, bundler, test runner, and package manager
+brew "bun"
 # Software library to render fonts
 brew "freetype"
 # Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
