@@ -56,6 +56,8 @@ brew "git-delta"
 brew "git-lfs"
 # GNU version of the tar archiving utility
 brew "gnu-tar"
+# Agent multiplexer that lives in your terminal
+brew "herdr"
 # Improved top (interactive process viewer)
 brew "htop"
 # Image manipulation library
