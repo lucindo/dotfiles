@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Open a browser (optional URL) as a tab in the current cmux pane.
-# Usage: br [url]
-here="$(cd "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-CMUX_OPEN_TAB_LABEL=br exec "$here/cmux-open-tab" browser open "$@"

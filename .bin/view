@@ -2,11 +2,13 @@
 # view: visualize files from the terminal.
 #
 # For browser-renderable files (images, PDFs, SVG, HTML, web media) this opens
-# the file in a cmux browser tab via a file:// URL (rendered by Chromium). For
+# the file in its default macOS app via `open` (browser, Preview, ...). For
 # anything else it falls back to a read-only editor, preserving the role of the
-# system `view` (/usr/bin/view -> vim) that this shadows.
+# system `view` (/usr/bin/view -> vim) that this shadows. Markdown gets a
+# themed HTML rendering first — also the go-to for proofreading Devanagari/
+# Sanskrit, which browsers shape correctly and terminal cells cannot.
 #
-# Single file only for browser viewing; multiple files / no cmux -> editor.
+# Single file only for app viewing; multiple files -> editor.
 # Set VIEW_DRY_RUN=1 to print the chosen action instead of performing it.
 set -uo pipefail
 
@@ -28,16 +30,14 @@ edit() {
     exec /usr/bin/view "$@"
 }
 
-# Open an absolute file path as a cmux browser tab in the calling pane.
+# Open an absolute file path in its default macOS app (browser, Preview, ...).
 open_browser() {
     local abs="$1"
     if [[ -n "${VIEW_DRY_RUN:-}" ]]; then
-        printf 'browser: file://%s\n' "$abs"
+        printf 'open: %s\n' "$abs"
         exit 0
     fi
-    local here
-    here="$(cd "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-    CMUX_OPEN_TAB_LABEL=view exec "$here/cmux-open-tab" browser open "file://$abs"
+    exec open "$abs"
 }
 
 # Render a markdown file to a themed HTML file under the view cache and echo its
@@ -164,8 +164,8 @@ EOF
     printf '%s\n' "$out"
 }
 
-# No file, not inside cmux, or more than one file -> just edit.
-if [[ $# -eq 0 || $# -gt 1 || -z "${CMUX_SURFACE_ID:-}" ]]; then
+# No file or more than one file -> just edit.
+if [[ $# -eq 0 || $# -gt 1 ]]; then
     edit "$@"
 fi
 
@@ -179,13 +179,12 @@ fi
 ext="${file##*.}"
 ext="$(printf '%s' "$ext" | tr '[:upper:]' '[:lower:]')"
 
-# Absolute path (cmux/Chromium handles percent-encoding of the file:// URL).
+# Absolute path.
 dir="$(cd "$(dirname -- "$file")" 2>/dev/null && pwd)" \
     || { echo "view: cannot resolve path: $file" >&2; exit 1; }
 abs="$dir/$(basename -- "$file")"
 
 # Markdown -> render to a themed dark HTML file, then view that in the browser.
-# (`md` still opens the plain cmux viewer; `view` is the readable-themed path.)
 case "$ext" in
     md|markdown|mdown|mkd|mkdn|mdwn)
         if [[ -n "${VIEW_DRY_RUN:-}" ]]; then
@@ -196,7 +195,7 @@ case "$ext" in
         ;;
 esac
 
-# Other browser-renderable files open directly; anything else -> edit.
+# Other browser-renderable files open in their default app; anything else -> edit.
 case " $(echo $browser_exts) " in
     *" $ext "*) : ;;
     *) edit "$file" ;;

@@ -89,12 +89,14 @@ fi
 # Added by Antigravity CLI installer
 export PATH="/Users/lucindo/.local/bin:$PATH"
 
-# cmux ships its own shell integration and doesn't expose Ghostty's, so source
-# the vendored copy to get OSC 7 cwd reporting (needed for inherit-working-directory).
-GHOSTTY_SHELL_INTEGRATION="$HOME/.config/ghostty/shell-integration/bash/ghostty.bash"
-if [ -r "${GHOSTTY_SHELL_INTEGRATION}" ]; then
-  builtin source "${GHOSTTY_SHELL_INTEGRATION}"
-fi
+# Report cwd to the terminal (OSC 7) so new tabs/splits inherit it. Ghostty
+# and kitty inject their own shell integration for this; wezterm doesn't, so
+# emit it ourselves (a duplicate report is harmless). Spaces are the one
+# reserved char worth encoding in real-world paths here.
+__osc7_cwd() {
+    printf '\033]7;file://%s%s\033\\' "${HOSTNAME:-localhost}" "${PWD// /%20}"
+}
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }__osc7_cwd"
 
 FABRIC_ALIAS_PREFIX="fab-"
 # Loop through all files in the ~/.config/fabric/patterns directory
@@ -126,47 +128,3 @@ yt() {
     fabric -y "$video_link" $transcript_flag
 }
 
-# cmux helpers `md`, `br`, `view` (and shared `cmux-open-tab`) live in ~/.bin.
-# The completions for `md` and `br` stay here since completion is shell-level.
-
-# Tab-complete only markdown files (and directories, to descend into them).
-_cmux_md_tab() {
-    local cur="${COMP_WORDS[COMP_CWORD]}"
-    if declare -F _filedir >/dev/null; then
-        _filedir '@(md|markdown|mkd|mdown|MD)'
-        return
-    fi
-    # Fallback when bash-completion's _filedir isn't loaded: match markdown
-    # extensions (case-insensitively) and still offer directories to descend.
-    local restore; restore="$(shopt -p extglob nocaseglob nocasematch)"
-    shopt -s extglob nocaseglob nocasematch
-    COMPREPLY=( $(compgen -o plusdirs -f -X '!*.@(md|markdown|mkd|mdown)' -- "$cur") )
-    eval "$restore"
-}
-complete -o filenames -F _cmux_md_tab md
-
-# Tab-complete br with http(s) URLs seen in shell history. cmux exposes no
-# readable browser history, so the shell's own history is the next-best source.
-_cmux_browser_tab() {
-    # Take the word under the cursor using whitespace boundaries only, so URLs
-    # (which contain ':') aren't split apart by COMP_WORDBREAKS.
-    local line="${COMP_LINE:0:${COMP_POINT:-${#COMP_LINE}}}"
-    local cur="${line##* }"
-
-    local urls
-    urls="$( { history 2>/dev/null | sed 's/^[ 0-9]*//'; cat "${HISTFILE:-$HOME/.bash_history}" 2>/dev/null; } \
-        | grep -oE 'https?://[^[:space:]"'\'']+' \
-        | sort -u )"
-
-    COMPREPLY=( $(compgen -W "$urls" -- "$cur") )
-
-    # When ':' is a word-break char, readline replaces only the text after the
-    # last ':', so strip that leading portion from each candidate to match.
-    if [[ $COMP_WORDBREAKS == *:* && $cur == *:* ]]; then
-        local head="${cur%"${cur##*:}"}" i
-        for i in "${!COMPREPLY[@]}"; do
-            COMPREPLY[i]="${COMPREPLY[i]#"$head"}"
-        done
-    fi
-}
-complete -F _cmux_browser_tab br
