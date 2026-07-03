@@ -54,8 +54,16 @@ config.audible_bell = "Disabled"
 -- command = /opt/homebrew/bin/bash --login
 config.default_prog = { "/opt/homebrew/bin/bash", "--login" }
 
--- Ghostty shows native tabs only when there are 2+
-config.hide_tab_bar_if_only_one_tab = true
+-- Ghostty paints the titlebar dark (transparent style); wezterm's native
+-- titlebar follows the system appearance and clashes in light mode. Use the
+-- fancy tab bar as a dark titlebar with the traffic lights integrated in it
+-- (always visible — it doubles as the window drag area).
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+config.integrated_title_button_style = "MacOsNative"
+config.window_frame = {
+	active_titlebar_bg = "#292c3c", -- catppuccin frappe mantle
+	inactive_titlebar_bg = "#292c3c",
+}
 
 -- tab/window/split-inherit-working-directory: new tabs/splits use the current
 -- pane's cwd, reported via OSC 7 (the shell integration sourced in .profile).
