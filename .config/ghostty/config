@@ -1,6 +1,6 @@
 font-family = BlexMono Nerd Font
 font-size = 15
-window-width = 160
+window-width = 200
 window-height = 48
 theme = catppuccin-frappe
 macos-option-as-alt = true
