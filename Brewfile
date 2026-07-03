@@ -150,4 +150,6 @@ cask "ghostty"
 # Speech to text application
 cask "handy"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
-cask "wezterm"
+# (nightly: the 2024 stable has years-old text shaping; nightly renders
+# Devanagari noticeably better)
+cask "wezterm@nightly"
