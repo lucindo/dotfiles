@@ -60,6 +60,8 @@ brew "gnu-tar"
 brew "herdr"
 # Improved top (interactive process viewer)
 brew "htop"
+# Review-first terminal diff viewer for agent-authored changesets
+brew "hunk"
 # Image manipulation library
 brew "jpeg"
 # Lightweight and flexible command-line JSON processor
