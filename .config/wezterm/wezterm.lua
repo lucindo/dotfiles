@@ -19,7 +19,7 @@ config.harfbuzz_features = { "kern", "liga", "clig", "calt" }
 config.font_size = 15.0
 
 -- wezterm rasterizes with bundled FreeType even on macOS, which looks thinner
--- and fuzzier than the CoreText rendering in Ghostty/kitty. No hinting (what
+-- and fuzzier than the CoreText rendering in Ghostty. No hinting (what
 -- macOS itself does) + LCD render target is the closest match to native text.
 config.freetype_load_flags = "NO_HINTING"
 config.freetype_render_target = "HorizontalLcd"

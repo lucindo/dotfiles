@@ -90,9 +90,9 @@ fi
 export PATH="/Users/lucindo/.local/bin:$PATH"
 
 # Report cwd to the terminal (OSC 7) so new tabs/splits inherit it. Ghostty
-# and kitty inject their own shell integration for this; wezterm doesn't, so
-# emit it ourselves (a duplicate report is harmless). Spaces are the one
-# reserved char worth encoding in real-world paths here.
+# injects its own shell integration for this; wezterm doesn't, so emit it
+# ourselves (a duplicate report is harmless). Spaces are the one reserved
+# char worth encoding in real-world paths here.
 __osc7_cwd() {
     printf '\033]7;file://%s%s\033\\' "${HOSTNAME:-localhost}" "${PWD// /%20}"
 }
