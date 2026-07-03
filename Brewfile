@@ -141,6 +141,7 @@ brew "zlib"
 brew "tw93/tap/mole"
 cask "font-blex-mono-nerd-font"
 cask "font-ibm-plex-sans-devanagari"
+cask "font-noto-sans-devanagari"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Speech to text application
