@@ -143,6 +143,8 @@ brew "tw93/tap/mole"
 # Ghostty-based terminal with vertical tabs and notifications for AI coding agents
 cask "cmux"
 cask "font-blex-mono-nerd-font"
+# Devanagari companion to Plex Mono, used by kitty for Sanskrit (symbol_map)
+cask "font-ibm-plex-sans-devanagari"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Speech to text application
