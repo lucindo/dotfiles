@@ -140,13 +140,10 @@ brew "zlib"
 # Comprehensive macOS cleanup and application uninstall tool
 brew "tw93/tap/mole"
 cask "font-blex-mono-nerd-font"
-# Devanagari companion to Plex Mono, used by kitty for Sanskrit (symbol_map)
 cask "font-ibm-plex-sans-devanagari"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Speech to text application
 cask "handy"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
-# (nightly: the 2024 stable has years-old text shaping; nightly renders
-# Devanagari noticeably better)
 cask "wezterm@nightly"
