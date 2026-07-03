@@ -149,3 +149,5 @@ cask "font-ibm-plex-sans-devanagari"
 cask "ghostty"
 # Speech to text application
 cask "handy"
+# GPU-accelerated cross-platform terminal emulator and multiplexer
+cask "wezterm"
