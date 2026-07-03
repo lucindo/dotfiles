@@ -14,9 +14,9 @@ config.font = wezterm.font_with_fallback({
 config.font_size = 15.0
 
 -- wezterm rasterizes with bundled FreeType even on macOS, which looks thinner
--- and fuzzier than the CoreText rendering in Ghostty/kitty. Light hinting +
--- LCD render target is the closest match to native macOS text.
-config.freetype_load_target = "Light"
+-- and fuzzier than the CoreText rendering in Ghostty/kitty. No hinting (what
+-- macOS itself does) + LCD render target is the closest match to native text.
+config.freetype_load_flags = "NO_HINTING"
 config.freetype_render_target = "HorizontalLcd"
 
 -- SemiBold as bold on purpose — real Bold is too heavy for this face. Matches
