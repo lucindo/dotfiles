@@ -4,13 +4,18 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local config = wezterm.config_builder()
 
+-- Ensure WezTerm handles the macOS IME correctly
+config.use_ime = true
+
 -- font-family = BlexMono Nerd Font / font-size = 15.
--- Explicit fallback chain: Devanagari (Sanskrit) goes to the design-matched
--- IBM Plex Sans Devanagari (Brewfile cask) instead of a random system font.
+-- Explicit fallback chain: Devanagari (Sanskrit) goes to Kohinoor Devanagari
+-- (macOS system font) instead of a random fallback.
 config.font = wezterm.font_with_fallback({
 	"BlexMono Nerd Font",
-	"IBM Plex Sans Devanagari",
+	"Kohinoor Devanagari",
 })
+-- Enable HarfBuzz for proper ligature and complex text shaping
+config.harfbuzz_features = { "kern", "liga", "clig", "calt" }
 config.font_size = 15.0
 
 -- wezterm rasterizes with bundled FreeType even on macOS, which looks thinner
@@ -18,27 +23,6 @@ config.font_size = 15.0
 -- macOS itself does) + LCD render target is the closest match to native text.
 config.freetype_load_flags = "NO_HINTING"
 config.freetype_render_target = "HorizontalLcd"
-
--- SemiBold as bold on purpose — real Bold is too heavy for this face. Matches
--- the Ghostty setup, where the family's Bold was replaced with SemiBold.
-config.font_rules = {
-	{
-		intensity = "Bold",
-		italic = false,
-		font = wezterm.font_with_fallback({
-			{ family = "BlexMono Nerd Font", weight = "DemiBold" },
-			"IBM Plex Sans Devanagari",
-		}),
-	},
-	{
-		intensity = "Bold",
-		italic = true,
-		font = wezterm.font_with_fallback({
-			{ family = "BlexMono Nerd Font", weight = "DemiBold", italic = true },
-			"IBM Plex Sans Devanagari",
-		}),
-	},
-}
 
 -- theme = catppuccin-frappe (bundled with wezterm, no vendoring needed)
 config.color_scheme = "Catppuccin Frappe"
