@@ -1,3 +1,4 @@
+tap "railwaycat/emacsmacport", trusted: true
 tap "tw93/tap", trusted: true
 # Search tool like grep, but optimized for programmers
 brew "ack"
@@ -137,10 +138,13 @@ brew "yq"
 brew "yt-dlp"
 # General-purpose lossless data-compression library
 brew "zlib"
+# YAMAMOTO Mitsuharu's Mac port of GNU Emacs
+brew "railwaycat/emacsmacport/emacs-mac@29"
 # Comprehensive macOS cleanup and application uninstall tool
 brew "tw93/tap/mole"
 cask "font-blex-mono-nerd-font"
 cask "font-ibm-plex-sans-devanagari"
+cask "font-liberation-nerd-font"
 cask "font-noto-sans-devanagari"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"

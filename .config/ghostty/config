@@ -1,8 +1,6 @@
-font-family = BlexMono Nerd Font
+#font-family = "LiterationMono Nerd Font Mono"
+font-family = "Monaco"
 font-size = 15
-# SemiBold as bold on purpose — real Bold is too heavy for this face. Until
-# now this relied on the family's Bold files being replaced with SemiBold;
-# explicit here so it survives a font reinstall.
 font-style-bold = SemiBold
 window-width = 200
 window-height = 48
