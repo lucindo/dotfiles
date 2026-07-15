@@ -1,3 +1,4 @@
+tap "goreleaser/tap"
 tap "railwaycat/emacsmacport", trusted: true
 tap "tw93/tap", trusted: true
 # Search tool like grep, but optimized for programmers
@@ -148,7 +149,7 @@ cask "font-liberation-nerd-font"
 cask "font-noto-sans-devanagari"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
-# Speech to text application
-cask "handy"
+# Release engineering, simplified
+cask "goreleaser/tap/goreleaser", trusted: true
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm@nightly"
